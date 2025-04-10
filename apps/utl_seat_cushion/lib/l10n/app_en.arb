@@ -1,0 +1,44 @@
+{
+  "@@locale": "en",
+
+  "appName": "UTL Seat Cushion App",
+
+  "connectBluetoothButtonText": "Connect",
+  "disconnectBluetoothButtonText": "Disconnect",
+  "sendSeatCushionCommandButtonText": "Send Command",
+  "startSavingSeatCushionEntityButtonText": "Start Saving Data",
+  "endSavingSeatCushionEntityButtonText": "End Saving Data",
+  "clearOldDataButtonText": "Clear Old Data",
+  "clearOldDataNotification": "Clear old data finished.",
+
+  "downloadFileButtonText": "Download {format} file",
+  "@downloadFileButtonText": {
+    "placeholders": {
+      "format": {
+        "type": "String"
+      }
+    }
+  },
+  "downloadFileFinishedNotification": "Download {format} file finished.",
+  "@downloadFileButtonText": {
+    "placeholders": {
+      "format": {
+        "type": "String"
+      }
+    }
+  },
+
+  "name": "Name",
+  "time": "Time",
+  "device": "Device",
+  "deviceId": "Device ID",
+  "type": "Type",
+  "index": "Index",
+  "number": "Number",
+
+  "seatCushion": "Seat Cushion",
+  "force": "Force",
+  "centerOfForces": "Center Of Forces",
+  "ischiumPosition": "Ischium Position",
+  "ischiumWidth": "Ischium Width"
+}

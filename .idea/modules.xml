@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/packages/bluetooth_utils/melos_bluetooth_utils.iml" filepath="$PROJECT_DIR$/packages/bluetooth_utils/melos_bluetooth_utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/common_utils/melos_common_utils.iml" filepath="$PROJECT_DIR$/packages/common_utils/melos_common_utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/file_utils/melos_file_utils.iml" filepath="$PROJECT_DIR$/packages/file_utils/melos_file_utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/hex_keyboard/melos_hex_keyboard.iml" filepath="$PROJECT_DIR$/packages/hex_keyboard/melos_hex_keyboard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/line_chart_utils/melos_line_chart_utils.iml" filepath="$PROJECT_DIR$/packages/line_chart_utils/melos_line_chart_utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/packages/path_provider_utils/melos_path_provider_utils.iml" filepath="$PROJECT_DIR$/packages/path_provider_utils/melos_path_provider_utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apps/utl_amulet/melos_utl_amulet.iml" filepath="$PROJECT_DIR$/apps/utl_amulet/melos_utl_amulet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apps/utl_electrochemical_tester/melos_utl_electrochemical_tester.iml" filepath="$PROJECT_DIR$/apps/utl_electrochemical_tester/melos_utl_electrochemical_tester.iml" />
+      <module fileurl="file://$PROJECT_DIR$/apps/utl_seat_cushion/melos_utl_seat_cushion.iml" filepath="$PROJECT_DIR$/apps/utl_seat_cushion/melos_utl_seat_cushion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/melos_utl_app.iml" filepath="$PROJECT_DIR$/melos_utl_app.iml" />
+    </modules>
+  </component>
+</project>

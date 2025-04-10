@@ -1,0 +1,14 @@
+# melos_managed_dependency_overrides: bluetooth_utils,common_utils,file_utils,hex_keyboard,line_chart_utils,path_provider_utils
+dependency_overrides:
+  bluetooth_utils:
+    path: ..\\..\\packages\\bluetooth_utils
+  common_utils:
+    path: ..\\..\\packages\\common_utils
+  file_utils:
+    path: ..\\..\\packages\\file_utils
+  hex_keyboard:
+    path: ..\\..\\packages\\hex_keyboard
+  line_chart_utils:
+    path: ..\\..\\packages\\line_chart_utils
+  path_provider_utils:
+    path: ..\\..\\packages\\path_provider_utils

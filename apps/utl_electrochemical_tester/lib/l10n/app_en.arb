@@ -1,0 +1,58 @@
+{
+  "@@locale": "en",
+  "appName": "UTL Electrochemical Tester App",
+
+  "downloadFileFinishedNotification": "Download {format} file finished.",
+  "@downloadFileButtonText": {
+    "placeholders": {
+      "format": {
+        "type": "String"
+      }
+    }
+  },
+
+  "clearAllDataTitle": "Clear all data",
+  "areYouSureYouWantToClearAllDataMessage": "Are you sure you want to clear all data?",
+  "yesButtonText": "Yes",
+  "noButtonText": "No",
+
+  "connectBluetoothButtonText": "Connect",
+  "disconnectBluetoothButtonText": "Disconnect",
+
+  "name": "name",
+  "time": "time",
+  "device": "device",
+  "type": "type",
+  "index": "index",
+  "number": "number",
+
+  "cortisol": "cortisol",
+  "lactate": "lactate",
+  "h1n1": "H1N1",
+  "temperature": "temperature",
+  "voltage": "voltage",
+  "current": "current",
+
+  "ca": "CA",
+  "cv": "CV",
+  "dpv": "DPV",
+
+  "eDc": "E_dc",
+  "tInterval": "t_interval",
+  "tRun": "t_run",
+
+  "eVertex1": "E_vertex1",
+  "eVertex2": "E_vertex2",
+  "numberOfScans": "number of scans",
+
+  "eBegin": "E_begin",
+  "eEnd": "E_end",
+  "eStep": "E_step",
+  "ePulse": "E_pulse",
+  "tPulse": "t_pulse",
+  "scanRate": "scan rate",
+  "inversionOption": "inversion option",
+
+  "ad5940ParametersElectrochemicalWorkingElectrode": "AD5940 Working Electrode",
+  "ad5940HsRTia": "AD5940 HsRTia"
+}

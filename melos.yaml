@@ -1,0 +1,54 @@
+name: utl_app
+
+packages:
+  - packages/**
+  - apps/**
+
+scripts:
+  analyze:
+    run: dart analyze .
+    description: Run dart analyze on all packages
+  format:
+    run: dart format --set-exit-if-changed .
+    description: Format all packages
+  test:
+    run: flutter test
+    description: Run tests in all packages
+
+dependencyOverrides:
+  awesome_dialog: ^3.1.0
+  equatable: ^2.0.7
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.8
+  
+  flutter_blue_plus: ^1.35.3
+  flutter_localizations:
+    sdk: flutter
+  flutter_ringtone_player: ^4.0.0+3
+  fluttertoast: ^8.2.10
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  path_provider: ^2.1.5
+  permission_handler: ^11.4.0
+  plugin_platform_interface: ^2.0.2
+  provider: ^6.1.2
+  shared_preferences: ^2.3.5
+  syncfusion_flutter_charts: ^28.1.33
+  syncfusion_flutter_xlsio: ^28.1.33
+  synchronized: ^3.3.0+3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^5.0.0
+
+  hive_generator: ^2.0.1
+  build_runner: ^2.3.3

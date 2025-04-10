@@ -1,0 +1,45 @@
+{
+  "@@locale": "zh",
+
+  "appName": "UTL Seat Cushion App",
+
+  "connectBluetoothButtonText": "连接",
+  "disconnectBluetoothButtonText": "断开连接",
+  "sendSeatCushionCommandButtonText": "发送指令",
+  "startSavingSeatCushionEntityButtonText": "开始保存数据",
+  "endSavingSeatCushionEntityButtonText": "结束保存数据",
+  "clearOldDataButtonText": "删除旧数据",
+  "clearOldDataNotification": "删除旧数据完成。",
+
+  "downloadFileButtonText": "下载 {format} 文件",
+  "@downloadFileButtonText": {
+    "description": "下载指定格式的文件。",
+    "placeholders": {
+      "format": {
+        "type": "String"
+      }
+    }
+  },
+  "downloadFileFinishedNotification": "下载 {format} 完成。",
+  "@downloadFileButtonText": {
+    "placeholders": {
+      "format": {
+        "type": "String"
+      }
+    }
+  },
+
+  "name": "名字",
+  "time": "时间",
+  "device": "设备",
+  "deviceId": "设备 ID",
+  "type": "类别",
+  "index": "索引",
+  "number": "数量",
+
+  "seatCushion": "坐垫",
+  "force": "力量",
+  "centerOfForces": "力量中心",
+  "ischiumPosition": "坐骨位置",
+  "ischiumWidth": "坐骨宽度"
+}
