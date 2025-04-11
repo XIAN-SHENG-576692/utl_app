@@ -25,18 +25,31 @@ class SeatCushionParameters {
 
 class SeatCushionCalculator {
   SeatCushionCalculator._();
+
+  static Point<double> basePosition({
+    required SeatCushionEntity entity,
+  }) {
+    switch(entity.type) {
+      case SeatCushionType.upper:
+        return Point(0.0, 0.0);
+      case SeatCushionType.lower:
+        return Point(0.0, 143.0);
+    }
+  }
+
   static double ischiumWidth({
     required SeatCushionEntity upper,
     required SeatCushionEntity lower,
   }) {
     if(upper.type != SeatCushionType.upper) throw Exception("ischiumWidth: enter wrong upper.");
     if(lower.type != SeatCushionType.lower) throw Exception("ischiumWidth: enter wrong lower.");
-    final upperP = upper.ischiumPosition();
-    final lowerP = upper.ischiumPosition() + Point<double>(0, 63.0);
+    final upperP = upper.ischiumPosition() + basePosition(entity: upper);
+    final lowerP = lower.ischiumPosition() + basePosition(entity: lower);
     final dx = (lowerP.x - upperP.x);
     final dy = (lowerP.y - upperP.y);
     return sqrt(pow(dx, 2) + pow(dy, 2));
   }
+
 }
 
 class SeatCushionUnit extends Equatable {
@@ -101,6 +114,7 @@ class SeatCushionEntity extends Equatable {
       },
     ) * (1 / totalForce());
   }
+
   Point<double> ischiumPosition() {
     final units = this.units.toList(growable: false)..sort((a, b) => b.force.compareTo(a.force));
     var leverage = Point<double>(0, 0);
@@ -117,4 +131,5 @@ class SeatCushionEntity extends Equatable {
     }
     return leverage * (1 / total);
   }
+
 }

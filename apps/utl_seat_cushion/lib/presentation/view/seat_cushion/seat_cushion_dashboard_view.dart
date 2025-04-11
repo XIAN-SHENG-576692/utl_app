@@ -24,7 +24,6 @@ class SeatCushionDashboardView extends StatelessWidget {
       builder: (context, _) {
         final theme = Theme.of(context);
         final appLocalizations = AppLocalizations.of(context)!;
-        final ischiumWidth = context.select<SeatCushionUnitsManagerChangeNotifier, double?>((n) => n.ischiumWidth);
         return ListView(
           children: [
             ChangeNotifierProvider(
@@ -52,10 +51,15 @@ class SeatCushionDashboardView extends StatelessWidget {
             SeatCushionForceColorBar(
               colorHeight: 10,
             ),
-            Text(
-              "${appLocalizations.ischiumWidth}: ${ischiumWidth?.toStringAsFixed(4).padLeft(8, " ")} mm",
-              style: theme.textTheme.bodyLarge,
-              textAlign: TextAlign.center,
+            Builder(
+              builder: (context) {
+                final ischiumWidth = context.select<SeatCushionUnitsManagerChangeNotifier, double?>((n) => n.ischiumWidth);
+                return Text(
+                  "${appLocalizations.ischiumWidth}: ${ischiumWidth?.toStringAsFixed(4).padLeft(8, " ")} mm",
+                  style: theme.textTheme.bodyLarge,
+                  textAlign: TextAlign.center,
+                );
+              }
             ),
           ],
         );
