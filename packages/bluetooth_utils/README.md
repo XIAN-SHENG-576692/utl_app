@@ -1,39 +1,27 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# 🌀 bluetooth_utils
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+A modular Bluetooth utility toolkit built with [flutter_blue_plus](https://pub.dev/packages/flutter_blue_plus).  
+This package is currently designed for internal use within this project, and there is no plan to publish it as a reusable library at this time.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+If this is your first time using the toolkit, it's highly recommended to refer to the sample code in the [`example/`](example) directory, which demonstrates the basic usage of each module.
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+---
 
-## Features
+# 📁 Project Structure Overview
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+## 🧩 `presentation` – Bluetooth UI Layer
 
-## Getting started
+This layer includes common UI components for Bluetooth interactions:
+- **`is_on`**: Checks whether the user's Bluetooth is enabled.
+- **`others`**: Additional UI modules for various Bluetooth-related functionalities.
+- **`quick_connection`**: Provides a fast and user-friendly interface to scan for and connect to nearby Bluetooth devices.
+- **`theme`**: Handles Bluetooth-related theming and style management.
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+---
 
-## Usage
+## 🔧 `services` – Bluetooth Service Logic Layer
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
-
-```dart
-const like = 'sample';
-```
-
-## Additional information
-
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+This layer encapsulates the logic and operations related to Bluetooth services:
+- **`application`**: Sets up commonly used Bluetooth service flows for the project with minimal configuration.
+- **`devices`**: Manages the connection and interaction logic with `BluetoothDevice` instances.
+- **`services`**: Handles the parsing and management of `List<BluetoothService>` objects.
