@@ -1,9 +1,9 @@
 import 'dart:math';
 
+import 'package:line_chart_utils/sf_cartesian_chart/sf_cartesian_chart_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:utl_electrochemical_tester/presentation/change_notifier/electrochemical/line_chart/electrochemical_line_chart_change_notifier.dart';
-import 'package:line_chart_utils/presentation/sf_cartesian_chart/sf_cartesian_chart_handler.dart';
 
 class ElectrochemicalLineChart extends Selector<ElectrochemicalLineChartChangeNotifier, List<LineSeries<Point<double>, double>>> {
   ElectrochemicalLineChart({super.key}) : super(

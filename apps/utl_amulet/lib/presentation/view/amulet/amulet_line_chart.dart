@@ -1,10 +1,7 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../change_notifier/amulet/amulet_line_chart_change_notifier.dart';
 import '../../change_notifier/amulet/amulet_line_chart_filtered_change_notifier.dart';

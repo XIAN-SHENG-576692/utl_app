@@ -1,6 +1,6 @@
 import 'dart:math';
+import 'package:bluetooth_utils/presentation/is_on/bluetooth_is_on_view.dart';
 import 'package:bluetooth_utils/presentation/quick_connection/bluetooth_quick_connection.dart';
-import 'package:bluetooth_utils/presentation/view/bluetooth_is_on_view.dart';
 import 'package:flutter/material.dart';
 
 import '../view/electrochemical_command_view/electrochemical_command_view.dart';

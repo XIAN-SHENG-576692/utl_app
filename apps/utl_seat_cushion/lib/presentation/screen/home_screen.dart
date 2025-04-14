@@ -1,5 +1,5 @@
+import 'package:bluetooth_utils/presentation/is_on/bluetooth_is_on_view.dart';
 import 'package:bluetooth_utils/presentation/quick_connection/bluetooth_quick_connection.dart';
-import 'package:bluetooth_utils/presentation/view/bluetooth_is_on_view.dart';
 import 'package:flutter/material.dart';
 
 import '../view/bluetooth/bluetooth_hex_keyboard_view.dart';

@@ -1,8 +1,8 @@
 import 'package:bluetooth_utils/presentation/theme/bluetooth_theme.dart';
 import 'package:flutter/material.dart';
-import 'package:hex_keyboard/hex_keyboard/hex_keyboard_controller.dart';
-import 'package:hex_keyboard/hex_keyboard/hex_keyboard_input_field.dart';
-import 'package:hex_keyboard/hex_keyboard/hex_keyboard_manager.dart';
+import 'package:hex_keyboard/hex_keyboard_controller.dart';
+import 'package:hex_keyboard/hex_keyboard_input_field.dart';
+import 'package:hex_keyboard/hex_keyboard_manager.dart';
 import 'package:provider/provider.dart';
 import 'package:utl_seat_cushion/infrastructure/bluetooth/bluetooth_module.dart';
 

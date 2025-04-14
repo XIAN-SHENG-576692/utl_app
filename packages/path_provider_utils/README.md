@@ -1,39 +1,115 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# path_provider_utils
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+A lightweight Dart utility for handling platform-specific file path access and asset extraction. Designed to simplify the process of accessing download directories and managing temporary asset files in both **Android** and **iOS** environments.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+* * *
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+# ✨ Features
+----------
 
-## Features
+*   🔍 **Cross-platform download directory detection**
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+    *   Uses `getApplicationDocumentsDirectory()` on iOS
 
-## Getting started
+    *   Uses global `/Download` or fallback to external storage on Android
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+*   📦 **Asset extraction**
 
-## Usage
+    *   Converts bundled assets into temporary files
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+    *   Automatically renames paths (e.g. `assets/image.png` → `assets-image.png`) for safe file handling
 
-```dart
-const like = 'sample';
+    *   Avoids overwriting by checking file existence
+
+
+* * *
+
+# 📦 Installation
+---------------
+
+Make sure to include the following packages in your `pubspec.yaml`:
+
+```yaml
+dependencies:
+  flutter:
+    sdk: flutter
+  path_provider: ^2.0.0
 ```
 
-## Additional information
+Also ensure your assets are registered if you use `getSystemAssetPath()`:
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```yaml
+flutter:
+  assets:
+    - assets/sample.txt
+```
+
+* * *
+
+# 🚀 Usage
+--------
+
+### 1\. Get System Download Directory
+
+```dart
+Directory? downloadDir = await getSystemDownloadDirectory();
+if (downloadDir != null) {
+  print("Download directory path: ${downloadDir.path}");
+}
+```
+
+> 📌 On Android, this will try to access `/storage/emulated/0/Download`. If it fails, it will use `getExternalStorageDirectory()`.
+
+* * *
+
+### 2\. Copy Asset to Temporary Directory
+
+```dart
+final tempDir = await getTemporaryDirectory();
+final assetPath = 'assets/sample.txt';
+
+String localAssetPath = await getSystemAssetPath(
+  temporaryDirectory: tempDir,
+  assetPath: assetPath,
+);
+
+print("Local asset path: $localAssetPath");
+```
+
+> 📦 Asset will only be written once. Future calls reuse the same file.
+
+* * *
+
+# ⚠️ Notes
+--------
+
+*   Android permissions may be required for file system access outside the app sandbox. Consider adding:
+
+
+```xml
+<!-- AndroidManifest.xml -->
+<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+```
+
+*   iOS requires no additional permissions for `getApplicationDocumentsDirectory()`.
+
+
+* * *
+
+# 📁 File Overview
+----------------
+
+| Function | Description |
+| --- | --- |
+| `getSystemDownloadDirectory()` | Returns a platform-appropriate download path |
+| `getSystemAssetPath()` | Extracts and returns the path of a bundled asset as a temporary file |
+
+* * *
+
+🛠 License
+----------
+
+This utility is free to use and modify under the MIT License.
+
+* * *

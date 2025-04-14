@@ -8,7 +8,7 @@ import '../../../domain/model/entity/seat_cushion_entity.dart';
 class SeatCushionCsvFile {
   static String _generateTimeFileFormat() {
     var time = DateTime.now();
-    return time.toFileFormat();
+    return time.toFileNameFormat();
   }
   static String _generateCsvFileName({
     required AppLocalizations appLocalizations,

@@ -7,15 +7,12 @@ extension ToUint8List on String {
     if (length % 2 != 0) {
       throw const FormatException("Invalid hex string: length must be even.");
     }
-
-    try {
-      return Uint8List.fromList(List.generate(length ~/ 2, (int index) {
-        final hexPair = substring(index * 2, index * 2 + 2);
-        return int.parse(hexPair, radix: 16);
-      }));
-    } catch (e) {
-      throw const FormatException("Invalid hex string: contains non-hexadecimal characters.");
-    }
+    return Uint8List.fromList(List.generate(length ~/ 2, (int index) {
+      final hexPair = substring(index * 2, index * 2 + 2);
+      final byte = int.tryParse(hexPair, radix: 16);
+      if(byte == null) throw const FormatException("Invalid hex string: contains non-hexadecimal characters.");
+      return byte;
+    }));
   }
 }
 

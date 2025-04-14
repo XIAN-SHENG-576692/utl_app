@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:math';
 
-import 'package:line_chart_utils/presentation/change_notifier/line_chart_change_notifier.dart';
+import 'package:line_chart_utils/line_chart_change_notifier.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:synchronized/synchronized.dart';
 import 'package:utl_amulet/presentation/change_notifier/amulet/mapper/mapper.dart';

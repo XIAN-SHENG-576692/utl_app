@@ -1,39 +1,133 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# 🔢 HexKeyboard – A Custom Hexadecimal Input Solution for Flutter
+================================================================
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
+A lightweight and reusable Flutter widget that enables precise **hexadecimal (0–F)** input via a **custom on-screen keyboard**. Ideal for embedded interfaces, hardware communication apps, or any system requiring strict hex input formatting.
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
+* * *
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+# ✨ Features
+----------
 
-## Features
+*   🧩 Modular architecture: controller, input field, and keyboard separated
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+*   🔠 Accepts only uppercase hexadecimal input (`0–9`, `A–F`)
 
-## Getting started
+*   ⌨️ Custom virtual keyboard (no system keyboard)
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+*   🔁 Long-press backspace support
 
-## Usage
+*   🎨 Fully customizable with your own icons and styling
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+*   🔄 Easy integration with state management solutions
 
-```dart
-const like = 'sample';
+
+* * *
+
+# 📦 Folder Structure
+-------------------
+
+```plaintext
+lib/
+├── hex_keyboard_controller.dart     # Controls the input state
+├── hex_keyboard_input_field.dart    # TextField for hex input (uses custom keyboard)
+├── hex_keyboard_manager.dart        # Manages global keyboard focus & actions
+└── hex_keyboard.dart                # UI layout for hex keyboard
 ```
 
-## Additional information
+* * *
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+# 🚀 Getting Started
+------------------
+
+## 1\. Import the files
+
+Copy all four `.dart` files to your project (ideally under `lib/widgets/hex_keyboard/` or similar).
+
+* * *
+
+## 2\. Create a controller & manager
+
+```dart
+final HexKeyboardController controller = HexKeyboardController();
+final HexKeyboardManager manager = HexKeyboardManager();
+```
+
+* * *
+
+## 3\. Add the input field
+
+```dart
+HexKeyboardInputField(
+  controller: controller,
+  manager: manager,
+)
+```
+
+* * *
+
+## 4\. Place the keyboard somewhere on the screen
+
+```dart
+HexKeyboard(
+  manager: manager,
+  backgroundColor: Colors.black,
+  backspaceIcon: Icon(Icons.backspace, color: Colors.yellow),
+  clearIcon: Icon(Icons.clear, color: Colors.red),
+  enterIcon: Icon(Icons.check, color: Colors.green),
+)
+```
+
+* * *
+
+# 📂 Example Integration
+----------------------
+
+```dart
+Column(
+  children: [
+    HexKeyboardInputField(
+      controller: myController,
+      manager: myManager,
+    ),
+    const SizedBox(height: 20),
+    HexKeyboard(
+      manager: myManager,
+    ),
+  ],
+)
+```
+
+* * *
+
+# 🔧 Customization Options
+------------------------
+
+| Property | Widget | Description |
+| --- | --- | --- |
+| `backspaceIcon` | `Icon(Icons.backspace)` | Icon used for backspace |
+| `clearIcon` | `Icon(Icons.clear)` | Icon for clearing all input |
+| `enterIcon` | `Icon(Icons.check)` | Icon for submitting the value |
+| `backgroundColor` | `Colors.black` | Background color of the keyboard |
+
+* * *
+
+# 🧠 Internal Architecture
+------------------------
+
+*   **HexKeyboardController**: Wraps a `TextEditingController` and handles logic for insert, delete, clear, and enter.
+
+*   **HexKeyboardManager**: Keeps track of which controller is active and delegates key presses.
+
+*   **HexKeyboardInputField**: A `TextField` that disables the system keyboard and filters input to valid hex only.
+
+*   **HexKeyboard**: On-screen UI keyboard that feeds input into the manager.
+
+
+* * *
+
+# 📜 License
+----------
+
+MIT License © 2025 \[NTUT UTL Lab\]
+
+* * *]()
