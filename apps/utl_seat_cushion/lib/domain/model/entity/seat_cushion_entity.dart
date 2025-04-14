@@ -33,7 +33,7 @@ class SeatCushionCalculator {
       case SeatCushionType.upper:
         return Point(0.0, 0.0);
       case SeatCushionType.lower:
-        return Point(0.0, 143.0);
+        return Point(0.0, 133.0);
     }
   }
 

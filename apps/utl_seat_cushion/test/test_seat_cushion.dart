@@ -119,7 +119,7 @@ void main() {
       final width = SeatCushionCalculator.ischiumWidth(upper: upper, lower: lower);
       expect(upperP, Point(-112.5, -35.0));
       expect(lowerP, Point(112.5, 35.0));
-      expect(width, 309.82898508693467);
+      expect(width.round(), 303);
     });
   });
 }
