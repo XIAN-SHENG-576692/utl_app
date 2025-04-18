@@ -1,0 +1,36 @@
+{
+  "@@locale": "zh_TW",
+
+  "appName": "UTL 電化學測試 App",
+
+  "downloadFileFinishedNotification": "下載 {format} 完成。",
+  "@downloadFileButtonText": {
+    "placeholders": {
+      "format": {
+        "type": "String"
+      }
+    }
+  },
+
+  "clearAllDataTitle": "清除資料",
+  "areYouSureYouWantToClearAllDataMessage": "您確定要清除所有資料?",
+  "yesButtonText": "確定",
+  "noButtonText": "取消",
+
+  "connectBluetoothButtonText": "連接",
+  "disconnectBluetoothButtonText": "斷開連接",
+
+  "name": "名字",
+  "time": "時間",
+  "device": "設備",
+  "type": "類別",
+  "index": "索引",
+  "number": "數量",
+
+  "cortisol": "皮質醇",
+  "lactate": "乳酸",
+  "h1n1": "H1N1",
+  "temperature": "溫度",
+  "voltage": "電壓",
+  "current": "電流"
+}
