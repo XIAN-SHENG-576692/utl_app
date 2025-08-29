@@ -1,9 +1,9 @@
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:synchronized/synchronized.dart';
 
 import '../domain/repository/seat_cushion_repository.dart';
 import '../domain/usecase/seat_cushion_usecase.dart';
 import '../infrastructure/source/csv_file/seat_cushion_csv_file.dart';
+import '../l10n/gen_l10n/app_localizations.dart';
 
 class FileHandler {
   final SeatCushionRepository seatCushionRepository;

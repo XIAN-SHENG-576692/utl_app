@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../application/seat_cushion_sensor_data_handler.dart';
 import '../../domain/repository/seat_cushion_repository.dart';
+import '../../l10n/gen_l10n/app_localizations.dart';
 import '../../service/file_handler.dart';
 
 class SeatCushionFeaturesChangeNotifier extends ChangeNotifier {

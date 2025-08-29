@@ -1,8 +1,8 @@
+import 'dart:math';
+
 import 'package:synchronized/synchronized.dart';
 import 'package:utl_electrochemical_tester/domain/entity/electrochemical_entity.dart';
 import 'package:utl_electrochemical_tester/domain/repository/electrochemical_entity_repository.dart';
-import 'package:utl_electrochemical_tester/domain/value/electrochemical_data.dart';
-import 'package:utl_electrochemical_tester/domain/value/electrochemical_header.dart';
 import 'package:utl_electrochemical_tester/infrastructure/source/hive/hive_source_handler.dart';
 
 class ElectrochemicalEntityRepositoryImpl implements ElectrochemicalEntityRepository {
@@ -13,13 +13,27 @@ class ElectrochemicalEntityRepositoryImpl implements ElectrochemicalEntityReposi
   });
 
   @override
-  Future<ElectrochemicalEntity?> appendDataToEntity({required int entityId, required Iterable<ElectrochemicalData> data}) {
+  Future<ElectrochemicalEntity?> upsertDataToEntity({required int entityId, required int index, required ElectrochemicalData data}) {
     return _lock.synchronized(() async {
-      var entity = await hiveSourceHandler.fetchEntityById(entityId);
+      final entity = await (hiveSourceHandler.fetchEntityById(entityId))                                                                                   ;
       if(entity == null) return null;
-      entity.data.addAll(data);
-      hiveSourceHandler.upsertEntity(entity: entity);
-      return entity;
+      final newEntity = ElectrochemicalEntity(
+          id: entityId,
+          header: entity.header,
+          data: List.generate(max(entity.data.length, index + 1), (n) {
+            if(n == index) {
+              return data;
+            }
+            else if(n >= entity.data.length) {
+              return ElectrochemicalData(data: 0);
+            }
+            else {
+              return entity.data[n];
+            }
+          }, growable: false),
+      );
+      hiveSourceHandler.upsertEntity(entity: newEntity);
+      return newEntity;
     });
   }
 
@@ -39,9 +53,12 @@ class ElectrochemicalEntityRepositoryImpl implements ElectrochemicalEntityReposi
   }
 
   @override
-  Future<ElectrochemicalEntity> createEntityFromHeader({required ElectrochemicalHeader header}) {
+  Future<ElectrochemicalEntity> createEntityFromHeader({
+    required ElectrochemicalHeader header,
+    Iterable<ElectrochemicalData>? data,
+  }) {
     return _lock.synchronized(() async {
-      return await hiveSourceHandler.createEntityFromHeader(header: header);
+      return await hiveSourceHandler.createEntityFromHeader(header: header, data: data);
     });
   }
 
@@ -53,7 +70,7 @@ class ElectrochemicalEntityRepositoryImpl implements ElectrochemicalEntityReposi
 
   @override
   Stream<ElectrochemicalEntity> fetchEntities() async* {
-    for(var id in hiveSourceHandler.fetchEntityIds().toList()) {
+    for(var id in hiveSourceHandler.fetchEntityIds().toList(growable: false)) {
       var entity = await _lock.synchronized(() async {
         return await hiveSourceHandler.fetchEntityById(id);
       });

@@ -1,16 +1,17 @@
 import 'dart:async';
 
 import 'package:synchronized/synchronized.dart';
-import 'package:utl_electrochemical_tester/infrastructure/source/bluetooth/bluetooth_received_packet.dart';
+import 'package:utl_electrochemical_tester/domain/entity/electrochemical_entity.dart';
 
-import '../../../service/electrochemical/dto/electrochemical_device_received_dto.dart';
+import '../../../service/electrochemical/electrochemical_data_stream.dart';
+import 'bluetooth_received_packet.dart';
 
 abstract class BluetoothPacketHandler {
   void handleReceivedPacket({
     required BluetoothReceivedPacket packet,
   });
-  Stream<ElectrochemicalDeviceReceivedDataDto> get electrochemicalDataStream;
-  Stream<ElectrochemicalDeviceReceivedHeaderDto> get electrochemicalHeaderStream;
+  Stream<ElectrochemicalDataStreamDto> get electrochemicalDataStream;
+  Stream<ElectrochemicalHeader> get electrochemicalHeaderStream;
 }
 
 class BluetoothPacketHandlerImpl implements BluetoothPacketHandler {
@@ -34,16 +35,16 @@ class BluetoothPacketHandlerImpl implements BluetoothPacketHandler {
   }
 
   @override
-  Stream<ElectrochemicalDeviceReceivedDataDto> get electrochemicalDataStream =>
+  Stream<ElectrochemicalDataStreamDto> get electrochemicalDataStream =>
       _validPacketStreamController
           .stream
-          .where((packet) => packet is ElectrochemicalDeviceReceivedDataDto)
-          .map((packet) => packet as ElectrochemicalDeviceReceivedDataDto);
+          .where((packet) => packet is ElectrochemicalDataStreamDto)
+          .map((packet) => packet as ElectrochemicalDataStreamDto);
 
   @override
-  Stream<ElectrochemicalDeviceReceivedHeaderDto> get electrochemicalHeaderStream =>
+  Stream<ElectrochemicalHeader> get electrochemicalHeaderStream =>
       _validPacketStreamController
           .stream
-          .where((packet) => packet is ElectrochemicalDeviceReceivedHeaderDto)
-          .map((packet) => packet as ElectrochemicalDeviceReceivedHeaderDto);
+          .where((packet) => packet is ElectrochemicalHeader)
+          .map((packet) => packet as ElectrochemicalHeader);
 }

@@ -1,7 +1,8 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
+import '../../../../domain/entity/electrochemical_entity.dart';
+import '../../../../l10n/gen_l10n/app_localizations.dart';
 import '../../../change_notifier/electrochemical/line_chart/electrochemical_line_chart_change_notifier.dart';
 
 class _Item {
@@ -13,12 +14,28 @@ class _Item {
   });
 }
 
+class ElectrochemicalLineChartDetailsTileDto extends Equatable {
+  final Color color;
+  final ElectrochemicalHeader header;
+  final List<double> xFetchedData;
+  const ElectrochemicalLineChartDetailsTileDto({
+    required this.color,
+    required this.header,
+    required this.xFetchedData,
+  });
+  @override
+  List<Object?> get props => [
+    header,
+    xFetchedData,
+  ];
+}
+
 class ElectrochemicalLineChartDetailsTile extends StatelessWidget {
-  final ElectrochemicalLineChartDetail detail;
+  final ElectrochemicalLineChartDetailsTileDto dto;
   final ElectrochemicalLineChartMode mode;
   const ElectrochemicalLineChartDetailsTile({
     super.key,
-    required this.detail,
+    required this.dto,
     required this.mode,
   });
   Widget _buildText({
@@ -43,11 +60,13 @@ class ElectrochemicalLineChartDetailsTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final appLocalizations = AppLocalizations.of(context)!;
+    final color = dto.color;
+    final header = dto.header;
+    final xFetchedData = dto.xFetchedData;
     final yItem = _Item(
       label: appLocalizations.current,
-      data: detail
-        .data
-        .map((e) => e.current.toString())
+      data: xFetchedData
+        .map((e) => e.toString())
         .join(", "),
     );
     return Column(
@@ -56,38 +75,38 @@ class ElectrochemicalLineChartDetailsTile extends StatelessWidget {
           items: [
             _Item(
               label: appLocalizations.name,
-              data: detail.dataName,
+              data: header.dataName,
             ),
             _Item(
               label: appLocalizations.type,
-              data: detail.type.name,
+              data: header.type.name,
             ),
           ],
-          color: detail.color,
+          color: color,
         ),
         _buildText(
           items: [
             _Item(
               label: appLocalizations.temperature,
-              data: detail.temperature.toString(),
+              data: header.temperature.toString(),
             ),
           ],
-          color: detail.color,
+          color: color,
         ),
         _buildText(
           items: [
             _Item(
               label: appLocalizations.time,
-              data: detail.createdTime.toString(),
+              data: header.createdTime.toString(),
             ),
           ],
-          color: detail.color,
+          color: color,
         ),
         _buildText(
           items: [
             yItem,
           ],
-          color: detail.color,
+          color: color,
         ),
         Divider(),
       ],

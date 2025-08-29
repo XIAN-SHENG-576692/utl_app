@@ -13,54 +13,54 @@ class _Dpv extends StatelessWidget {
         ElectrochemicalCommandWidgetBuilder.buildTile(
           label: appLocalizations.eBegin,
           body: TextFormField(
-            initialValue: notifier.getDpvElectrochemicalParametersEBegin(),
+            initialValue: notifier.getDpvElectrochemicalParametersEBegin().toString(),
             keyboardType: TextInputType.number,
-            onChanged: notifier.setDpvElectrochemicalParametersEBegin,
+            onChanged: (value) => notifier.setDpvElectrochemicalParametersEBegin(double.tryParse(value) ?? 0.0),
           ),
         ),
 
         ElectrochemicalCommandWidgetBuilder.buildTile(
           label: appLocalizations.eEnd,
           body: TextFormField(
-            initialValue: notifier.getDpvElectrochemicalParametersEEnd(),
+            initialValue: notifier.getDpvElectrochemicalParametersEEnd().toString(),
             keyboardType: TextInputType.number,
-            onChanged: notifier.setDpvElectrochemicalParametersEEnd,
+            onChanged: (value) => notifier.setDpvElectrochemicalParametersEEnd(double.tryParse(value) ?? 0.0),
           ),
         ),
 
         ElectrochemicalCommandWidgetBuilder.buildTile(
           label: appLocalizations.eStep,
           body: TextFormField(
-            initialValue: notifier.getDpvElectrochemicalParametersEStep(),
+            initialValue: notifier.getDpvElectrochemicalParametersEStep().toString(),
             keyboardType: TextInputType.number,
-            onChanged: notifier.setDpvElectrochemicalParametersEStep,
+            onChanged: (value) => notifier.setDpvElectrochemicalParametersEStep(double.tryParse(value) ?? 0.0),
           ),
         ),
 
         ElectrochemicalCommandWidgetBuilder.buildTile(
           label: appLocalizations.ePulse,
           body: TextFormField(
-            initialValue: notifier.getDpvElectrochemicalParametersEPulse(),
+            initialValue: notifier.getDpvElectrochemicalParametersEPulse().toString(),
             keyboardType: TextInputType.number,
-            onChanged: notifier.setDpvElectrochemicalParametersEPulse,
+            onChanged: (value) => notifier.setDpvElectrochemicalParametersEPulse(double.tryParse(value) ?? 0.0),
           ),
         ),
 
         ElectrochemicalCommandWidgetBuilder.buildTile(
           label: appLocalizations.tPulse,
           body: TextFormField(
-            initialValue: notifier.getDpvElectrochemicalParametersTPulse(),
+            initialValue: notifier.getDpvElectrochemicalParametersTPulse().toString(),
             keyboardType: TextInputType.number,
-            onChanged: notifier.setDpvElectrochemicalParametersTPulse,
+            onChanged: (value) => notifier.setDpvElectrochemicalParametersTPulse(double.tryParse(value) ?? 0.0),
           ),
         ),
 
         ElectrochemicalCommandWidgetBuilder.buildTile(
           label: appLocalizations.scanRate,
           body: TextFormField(
-            initialValue: notifier.getDpvElectrochemicalParametersScanRate(),
+            initialValue: notifier.getDpvElectrochemicalParametersScanRate().toString(),
             keyboardType: TextInputType.number,
-            onChanged: notifier.setDpvElectrochemicalParametersScanRate,
+            onChanged: (value) => notifier.setDpvElectrochemicalParametersScanRate(double.tryParse(value) ?? 0.0),
           ),
         ),
 

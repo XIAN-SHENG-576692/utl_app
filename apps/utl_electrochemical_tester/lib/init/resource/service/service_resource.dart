@@ -6,7 +6,7 @@ import 'package:utl_electrochemical_tester/service/local_storage/electrochemical
 class ServiceResource {
   ServiceResource._();
   static late final ElectrochemicalDevicesManager electrochemicalDevicesManager;
-  static late final ElectrochemicalDataStream electrochemicalDataStream;
+  static late final ElectrochemicalStreamer electrochemicalDataStream;
   static late final FileHandler fileHandler;
   static late final ElectrochemicalCommandLocalStorageHandler electrochemicalCommandLocalStorageHandler;
 }

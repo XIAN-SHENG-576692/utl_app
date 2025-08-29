@@ -1,35 +1,39 @@
 import 'dart:async';
 
+import 'package:flutter/widgets.dart';
+import 'package:utl_electrochemical_tester/domain/entity/electrochemical_entity.dart';
 import 'package:utl_electrochemical_tester/domain/repository/electrochemical_entity_repository.dart';
 import 'package:utl_electrochemical_tester/service/electrochemical/electrochemical_data_stream.dart';
 
-import '../domain/value/electrochemical_data.dart';
-import '../domain/value/electrochemical_header.dart';
-import '../service/electrochemical/dto/electrochemical_device_received_dto.dart';
-
-part 'mapper.dart';
-
 class ElectrochemicalEntityCreator {
-  late final StreamSubscription<ElectrochemicalDeviceReceivedHeaderDto> headerStream;
-  late final StreamSubscription<ElectrochemicalDeviceReceivedDataDto> dataStream;
+  late final StreamSubscription<ElectrochemicalHeader> _headerStream;
+  late final StreamSubscription<ElectrochemicalData> _dataStream;
+  @protected
   final ElectrochemicalEntityRepository electrochemicalEntityRepository;
   bool _isStarting = false;
   ElectrochemicalEntityCreator({
     required this.electrochemicalEntityRepository,
-    required ElectrochemicalDataStream electrochemicalDataStream,
+    required ElectrochemicalStreamer electrochemicalDataStream,
   }) {
-    headerStream = electrochemicalDataStream.headerStream.listen((dto) {
+    _headerStream = electrochemicalDataStream.headerStream.listen((header) {
       if(!_isStarting) return;
       electrochemicalEntityRepository.createEntityFromHeader(
-        header: _Mapper.mapDtoToHeader(dto: dto),
+        header: header,
       );
     });
-    dataStream = electrochemicalDataStream.dataStream.listen((dto) {
+    _dataStream = electrochemicalDataStream.dataStream.listen((data) async {
       if(!_isStarting) return;
-      electrochemicalEntityRepository.appendDataToEntity(
-        entityId: dto.entityId,
-        data: [_Mapper.mapDtoToData(dto: dto)],
-      );
+      await for (var entityId in electrochemicalEntityRepository
+          .fetchEntities()
+          .where((e) => e.id == data.entityId)
+          .map((e) => e.id)
+      ) {
+        electrochemicalEntityRepository.upsertDataToEntity(
+          entityId: entityId,
+          index: data.index,
+          data: data,
+        );
+      }
     });
   }
   void start() {
@@ -39,7 +43,7 @@ class ElectrochemicalEntityCreator {
     _isStarting = false;
   }
   void dispose() {
-    headerStream.cancel();
-    dataStream.cancel();
+    _headerStream.cancel();
+    _dataStream.cancel();
   }
 }

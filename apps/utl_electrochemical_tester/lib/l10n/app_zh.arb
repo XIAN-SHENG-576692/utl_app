@@ -12,10 +12,10 @@
     }
   },
 
-  "clearAllDataTitle": "清除资料",
-  "areYouSureYouWantToClearAllDataMessage": "您确定要清除所有资料?",
   "yesButtonText": "确定",
   "noButtonText": "取消",
+  "downloadButtonText": "下载",
+  "cancelButtonText": "取消",
 
   "connectBluetoothButtonText": "连接",
   "disconnectBluetoothButtonText": "断开连接",

@@ -230,10 +230,10 @@
       "languageVersion": "3.7"
     }
   ],
-  "generated": "2025-03-17T13:43:35.581163Z",
+  "generated": "2025-06-22T08:10:52.929955Z",
   "generator": "pub",
-  "generatorVersion": "3.7.2",
+  "generatorVersion": "3.8.0-171.0.dev",
   "flutterRoot": "file:///D:/flutter_windows_3.16.0-stable/flutter",
-  "flutterVersion": "3.29.2",
+  "flutterVersion": "3.31.0-0.1.pre",
   "pubCache": "file:///C:/Users/User-2042/AppData/Local/Pub/Cache"
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../domain/value/electrochemical_parameters.dart';
+import '../../../domain/entity/electrochemical_entity.dart';
 import 'item/electrochemical_command_ad5940_view.dart';
 import 'item/electrochemical_command_header_view.dart';
 import 'item/type/electrochemical_command_type_view.dart';

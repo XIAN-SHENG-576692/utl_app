@@ -14,6 +14,9 @@ class WidgetResources {
   static const Icon seatCushionIcon = Icon(
     Icons.curtains_sharp,
   );
+  static const Icon seatCushion3dMeshIcon = Icon(
+    Icons.map,
+  );
   static const Icon clearOldDataIcon = Icon(
     Icons.delete,
   );

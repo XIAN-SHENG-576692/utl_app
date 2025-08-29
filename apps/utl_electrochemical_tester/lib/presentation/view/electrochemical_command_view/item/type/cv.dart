@@ -13,54 +13,54 @@ class _Cv extends StatelessWidget {
         ElectrochemicalCommandWidgetBuilder.buildTile(
           label: appLocalizations.eBegin,
           body: TextFormField(
-            initialValue: notifier.getCvElectrochemicalParametersEBegin(),
+            initialValue: notifier.getCvElectrochemicalParametersEBegin().toString(),
             keyboardType: TextInputType.number,
-            onChanged: notifier.setCvElectrochemicalParametersEBegin,
+            onChanged: (value) => notifier.setCvElectrochemicalParametersEBegin(double.tryParse(value) ?? 0.0),
           ),
         ),
 
         ElectrochemicalCommandWidgetBuilder.buildTile(
           label: appLocalizations.eVertex1,
           body: TextFormField(
-            initialValue: notifier.getCvElectrochemicalParametersEVertex1(),
+            initialValue: notifier.getCvElectrochemicalParametersEVertex1().toString(),
             keyboardType: TextInputType.number,
-            onChanged: notifier.setCvElectrochemicalParametersEVertex1,
+            onChanged: (value) => notifier.setCvElectrochemicalParametersEVertex1(double.tryParse(value) ?? 0.0),
           ),
         ),
 
         ElectrochemicalCommandWidgetBuilder.buildTile(
           label: appLocalizations.eVertex2,
           body: TextFormField(
-            initialValue: notifier.getCvElectrochemicalParametersEVertex2(),
+            initialValue: notifier.getCvElectrochemicalParametersEVertex2().toString(),
             keyboardType: TextInputType.number,
-            onChanged: notifier.setCvElectrochemicalParametersEVertex2,
+            onChanged: (value) => notifier.setCvElectrochemicalParametersEVertex2(double.tryParse(value) ?? 0.0),
           ),
         ),
 
         ElectrochemicalCommandWidgetBuilder.buildTile(
           label: appLocalizations.eStep,
           body: TextFormField(
-            initialValue: notifier.getCvElectrochemicalParametersEStep(),
+            initialValue: notifier.getCvElectrochemicalParametersEStep().toString(),
             keyboardType: TextInputType.number,
-            onChanged: notifier.setCvElectrochemicalParametersEStep,
+            onChanged: (value) => notifier.setCvElectrochemicalParametersEStep(double.tryParse(value) ?? 0.0),
           ),
         ),
 
         ElectrochemicalCommandWidgetBuilder.buildTile(
           label: appLocalizations.scanRate,
           body: TextFormField(
-            initialValue: notifier.getCvElectrochemicalParametersScanRate(),
+            initialValue: notifier.getCvElectrochemicalParametersScanRate().toString(),
             keyboardType: TextInputType.number,
-            onChanged: notifier.setCvElectrochemicalParametersScanRate,
+            onChanged: (value) => notifier.setCvElectrochemicalParametersScanRate(double.tryParse(value) ?? 0.0),
           ),
         ),
 
         ElectrochemicalCommandWidgetBuilder.buildTile(
           label: appLocalizations.numberOfScans,
           body: TextFormField(
-            initialValue: notifier.getCvElectrochemicalParametersNumberOfScans(),
+            initialValue: notifier.getCvElectrochemicalParametersNumberOfScans().toString(),
             keyboardType: TextInputType.number,
-            onChanged: notifier.setCvElectrochemicalParametersNumberOfScans,
+            onChanged: (value) => notifier.setCvElectrochemicalParametersNumberOfScans(int.tryParse(value) ?? 0),
           ),
         ),
       ],

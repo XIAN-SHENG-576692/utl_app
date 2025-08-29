@@ -28,5 +28,6 @@ class ProcessElectrochemicalEntitiesUsecase {
     await for (var entity in electrochemicalEntityRepository.fetchEntities()) {
       if(!processor(entity)) return;
     }
+    return;
   }
 }

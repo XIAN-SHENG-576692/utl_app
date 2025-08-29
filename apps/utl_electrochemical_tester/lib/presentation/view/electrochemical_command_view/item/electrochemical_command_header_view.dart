@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:utl_electrochemical_tester/presentation/theme/theme_data.dart';
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import '../../../../domain/value/electrochemical_parameters.dart';
+import '../../../../domain/entity/electrochemical_entity.dart';
+import '../../../../l10n/gen_l10n/app_localizations.dart';
 import '../../../change_notifier/electrochemical/command/electrochemical_command_change_notifier.dart';
 
 class ElectrochemicalCommandHeaderView extends StatelessWidget {
@@ -26,6 +26,7 @@ class ElectrochemicalCommandHeaderView extends StatelessWidget {
   Widget build(BuildContext context) {
     final notifier = context.read<ElectrochemicalCommandChangeNotifier>();
     final appLocalizations = AppLocalizations.of(context)!;
+    final theme = Theme.of(context);
     final title = getTitle(appLocalizations);
     return ListTile(
       leading: Text(title),
@@ -33,9 +34,18 @@ class ElectrochemicalCommandHeaderView extends StatelessWidget {
         initialValue: notifier.getDataNameBuffer(),
         onChanged: notifier.setDataNameBuffer,
       ),
-      trailing: IconButton(
-        onPressed: () => notifier.start(type: type),
-        icon: const Icon(Icons.send),
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          IconButton(
+            onPressed: () => notifier.start(type: type),
+            icon: const Icon(Icons.send),
+          ),
+          IconButton(
+            onPressed: () => notifier.stop(),
+            icon: Icon(Icons.stop, color: theme.stopColor),
+          ),
+        ],
       ),
     );
   }

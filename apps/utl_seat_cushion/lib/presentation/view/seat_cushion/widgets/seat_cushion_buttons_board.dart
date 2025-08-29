@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 
+import '../../../../l10n/gen_l10n/app_localizations.dart';
 import '../../../theme/theme_data.dart';
 import '../../../change_notifier/seat_cushion_features.dart';
 import '../../../widget/widget_resources.dart';

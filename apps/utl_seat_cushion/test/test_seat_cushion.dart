@@ -10,7 +10,7 @@ void main() {
         id: 1,
         deviceId: 'dev01',
         forces: List.filled(SeatCushionParameters.unitsMaxIndex, 10),
-        type: SeatCushionType.upper,
+        type: SeatCushionType.right,
       );
 
       expect(entity.totalForce(), equals(10 * SeatCushionParameters.unitsMaxIndex));
@@ -25,7 +25,7 @@ void main() {
         id: 2,
         deviceId: 'dev02',
         forces: forces,
-        type: SeatCushionType.upper,
+        type: SeatCushionType.right,
       );
 
       final center = entity.centerOfForces();
@@ -39,7 +39,7 @@ void main() {
         id: 3,
         deviceId: 'dev03',
         forces: forces,
-        type: SeatCushionType.upper,
+        type: SeatCushionType.right,
       );
 
       final pos = entity.ischiumPosition();
@@ -68,13 +68,13 @@ void main() {
         id: 1,
         deviceId: 'dev01',
         forces: List.filled(SeatCushionParameters.unitsMaxIndex, 1),
-        type: SeatCushionType.upper,
+        type: SeatCushionType.right,
       );
       final lower = SeatCushionEntity(
         id: 2,
         deviceId: 'dev02',
         forces: List.filled(SeatCushionParameters.unitsMaxIndex, 1),
-        type: SeatCushionType.lower,
+        type: SeatCushionType.left,
       );
 
       expect(SeatCushionCalculator.basePosition(entity: upper), equals(Point(0.0, 0.0)));
@@ -87,16 +87,16 @@ void main() {
         id: 1,
         deviceId: 'dev01',
         forces: forces,
-        type: SeatCushionType.upper,
+        type: SeatCushionType.right,
       );
       final lower = SeatCushionEntity(
         id: 2,
         deviceId: 'dev02',
         forces: forces,
-        type: SeatCushionType.lower,
+        type: SeatCushionType.left,
       );
 
-      final width = SeatCushionCalculator.ischiumWidth(upper: upper, lower: lower);
+      final width = SeatCushionCalculator.ischiumWidth(left: upper, right: lower);
       expect(width, greaterThan(0));
     });
 
@@ -105,18 +105,18 @@ void main() {
         id: 1,
         deviceId: 'dev01',
         forces: List.generate(SeatCushionParameters.unitsMaxIndex, (i) => i == 0 ? 2500 : 0),
-        type: SeatCushionType.upper,
+        type: SeatCushionType.right,
       );
       final lower = SeatCushionEntity(
         id: 2,
         deviceId: 'dev02',
         forces: List.generate(SeatCushionParameters.unitsMaxIndex, (i) => i == (SeatCushionParameters.unitsMaxIndex - 1) ? 2500 : 0),
-        type: SeatCushionType.lower,
+        type: SeatCushionType.left,
       );
 
       final upperP = upper.ischiumPosition();
       final lowerP = lower.ischiumPosition();
-      final width = SeatCushionCalculator.ischiumWidth(upper: upper, lower: lower);
+      final width = SeatCushionCalculator.ischiumWidth(left: upper, right: lower);
       expect(upperP, Point(-112.5, -35.0));
       expect(lowerP, Point(112.5, 35.0));
       expect(width.round(), 303);

@@ -1,9 +1,7 @@
 import 'package:hive_flutter/adapters.dart';
-import 'package:utl_electrochemical_tester/domain/entity/electrochemical_entity.dart';
-import 'package:utl_electrochemical_tester/domain/value/electrochemical_header.dart';
-import 'package:utl_electrochemical_tester/infrastructure/source/hive/hive_electrochemical.dart';
-import 'package:utl_electrochemical_tester/infrastructure/source/hive/hive_mapper.dart';
 import 'package:synchronized/synchronized.dart';
+
+import '../../../domain/entity/electrochemical_entity.dart';
 
 class HiveSourceHandler {
   static const String _entityBoxName = "entityBox";
@@ -14,38 +12,39 @@ class HiveSourceHandler {
 
     Hive.init(hivePath);
 
-    Hive.registerAdapter(HiveCaElectrochemicalParametersAdapter());
-    Hive.registerAdapter(HiveCvElectrochemicalParametersAdapter());
-    Hive.registerAdapter(HiveDpvElectrochemicalParametersAdapter());
-    Hive.registerAdapter(HiveDpvElectrochemicalParametersInversionOptionAdapter());
-    Hive.registerAdapter(HiveElectrochemicalDataAdapter());
-    Hive.registerAdapter(HiveElectrochemicalEntityAdapter());
-    Hive.registerAdapter(HiveElectrochemicalHeaderAdapter());
-    Hive.registerAdapter(HiveElectrochemicalTypeAdapter());
+    Hive.registerAdapter(ElectrochemicalDataAdapter());
+    Hive.registerAdapter(ElectrochemicalEntityAdapter());
+    Hive.registerAdapter(ElectrochemicalHeaderAdapter());
+    Hive.registerAdapter(CaElectrochemicalParametersAdapter());
+    Hive.registerAdapter(CvElectrochemicalParametersAdapter());
+    Hive.registerAdapter(DpvElectrochemicalParametersAdapter());
+    Hive.registerAdapter(DpvElectrochemicalParametersInversionOptionAdapter());
 
-    var entityBox = await Hive.openLazyBox<HiveElectrochemicalEntity>(_entityBoxName);
+    var entityBox = await Hive.openLazyBox<ElectrochemicalEntity>(_entityBoxName);
 
     return HiveSourceHandler._(entityBox);
   }
 
-  final LazyBox<HiveElectrochemicalEntity> _entityBox;
+  final LazyBox<ElectrochemicalEntity> _entityBox;
 
   final Lock _lock = Lock();
   HiveSourceHandler._(this._entityBox);
 
+  int createNewId() {
+    return _entityBox.length + 1;
+  }
+
   Future<ElectrochemicalEntity?> fetchEntityById(int entityId) async {
     return _lock.synchronized(() async {
       var entity = await _entityBox.get(entityId);
-      if (entity == null) return null;
-      return HiveElectrochemicalMapper.toEntity(entityId, entity);
+      return entity;
     });
   }
 
   Future<ElectrochemicalHeader?> fetchHeadersByIds(int entityId) {
     return _lock.synchronized(() async {
       var entity = await _entityBox.get(entityId);
-      if (entity == null) return null;
-      return HiveElectrochemicalMapper.toHeader(entity.electrochemicalHeader);
+      return entity?.header;
     });
   }
 
@@ -59,10 +58,10 @@ class HiveSourceHandler {
 
   Stream<ElectrochemicalEntity> get entitySyncStream {
     return _entityBox.watch()
-      .where((event) => event.value is HiveElectrochemicalEntity)
+      .where((event) => event.value is ElectrochemicalEntity)
       .asyncMap((event) async {
         return _lock.synchronized(() async {
-          return HiveElectrochemicalMapper.toEntity(event.key, event.value);
+          return (event.value as ElectrochemicalEntity);
         });
       });
   }
@@ -79,14 +78,15 @@ class HiveSourceHandler {
 
   Future<ElectrochemicalEntity> createEntityFromHeader({
     required ElectrochemicalHeader header,
+    Iterable<ElectrochemicalData>? data,
   }) async {
     return _lock.synchronized(() async {
       final newEntity = ElectrochemicalEntity(
-        id: _entityBox.length + 1,
-        electrochemicalHeader: header,
-        data: [],
+        id: createNewId(),
+        header: header,
+        data: data?.toList(growable: false) ?? List.empty(growable: false),
       );
-      await _entityBox.put(newEntity.id, HiveElectrochemicalMapper.fromEntity(newEntity));
+      await _entityBox.put(newEntity.id, newEntity);
       return newEntity;
     });
   }
@@ -95,7 +95,7 @@ class HiveSourceHandler {
     required ElectrochemicalEntity entity,
   }) async {
     return _lock.synchronized(() {
-      return _entityBox.put(entity.id, HiveElectrochemicalMapper.fromEntity(entity));
+      return _entityBox.put(entity.id, entity);
     });
   }
 

@@ -36,7 +36,7 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.2
+  cupertino_icons: any
 
   bluetooth_utils: any
   common_utils: any
@@ -46,12 +46,19 @@ dependencies:
   path_provider_utils: any
 
   awesome_dialog: any
+  copy_with_extension: any
   equatable: any
+  file_picker: any
   flutter_blue_plus: any
   flutter_ringtone_player: any
+  flutter_svg: any
   fluttertoast: any
+  freezed_annotation: any
   hive: any
   hive_flutter: any
+  json_annotation: ^4.9.0
+  keyboard_actions: any
+  moving_average: any
   path_provider: any
   permission_handler: any
   provider: any
@@ -61,6 +68,8 @@ dependencies:
   synchronized: any
 
 dev_dependencies:
+  analyzer: any
+
   flutter_test:
     sdk: flutter
 
@@ -69,10 +78,14 @@ dev_dependencies:
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
-  flutter_lints: ^5.0.0
+  flutter_lints: any
 
-  hive_generator: ^2.0.1
-  build_runner: ^2.3.3
+  build_runner: any
+  copy_with_extension_gen: any
+  freezed: any
+  freezed_annotation: any
+  hive_generator: any
+  json_serializable: any
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -84,6 +97,11 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+
+  fonts:
+    - family: ElectrochemicalIconData
+      fonts:
+        - asset: assets/fonts/ElectrochemicalIconData.ttf
 
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -1,9 +1,11 @@
+import 'dart:typed_data';
+
 import 'package:bluetooth_utils/service/application/bluetooth_send_devices.dart';
 import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:utl_electrochemical_tester/domain/entity/electrochemical_entity.dart';
 import 'package:utl_electrochemical_tester/infrastructure/source/bluetooth/bluetooth_sent_packet.dart';
 import 'package:utl_electrochemical_tester/infrastructure/source/bluetooth/electrochemical_bluetooth_buffer.dart';
 
-import '../../../service/electrochemical/dto/electrochemical_device_sent_dto.dart';
 import '../../../service/electrochemical/electrochemical_devices_manager.dart';
 import '../../source/bluetooth/bluetooth_module.dart';
 
@@ -22,41 +24,26 @@ class ElectrochemicalDeviceImpl implements ElectrochemicalDevice {
   String get deviceId => device.remoteId.str;
 
   @override
-  Future<bool> startCa({required CaElectrochemicalDeviceSentDto dto}) {
+  Future<bool> start({required String dataName, required Uint8List electrodes, required ElectrochemicalParameters parameters}) {
     ElectrochemicalBluetoothBuffer.setBuffer(
-      dataName: dto.dataName,
+      dataName: dataName,
       deviceId: deviceId,
-      parameters: dto.electrochemicalParameters,
+      parameters: parameters,
     );
     return bluetoothSendDevices.sendBytes(
       deviceFilter: isConcreteElectrochemicalDevice,
-      bytes: BluetoothSentPacket.fromCa(dto: dto).data,
+      bytes: StartElectrochemicalBluetoothSentPacket(
+          parameters: parameters,
+          electrodes: electrodes,
+      ).data,
     ).then((value) => true);
   }
 
   @override
-  Future<bool> startCv({required CvElectrochemicalDeviceSentDto dto}) {
-    ElectrochemicalBluetoothBuffer.setBuffer(
-      dataName: dto.dataName,
-      deviceId: deviceId,
-      parameters: dto.electrochemicalParameters,
-    );
+  Future<bool> stop() {
     return bluetoothSendDevices.sendBytes(
       deviceFilter: isConcreteElectrochemicalDevice,
-      bytes: BluetoothSentPacket.fromCv(dto: dto).data,
-    ).then((value) => true);
-  }
-
-  @override
-  Future<bool> startDpv({required DpvElectrochemicalDeviceSentDto dto}) {
-    ElectrochemicalBluetoothBuffer.setBuffer(
-      dataName: dto.dataName,
-      deviceId: deviceId,
-      parameters: dto.electrochemicalParameters,
-    );
-    return bluetoothSendDevices.sendBytes(
-      deviceFilter: isConcreteElectrochemicalDevice,
-      bytes: BluetoothSentPacket.fromDpv(dto: dto).data,
+      bytes: StopElectrochemicalBluetoothSentPacket().data,
     ).then((value) => true);
   }
 }

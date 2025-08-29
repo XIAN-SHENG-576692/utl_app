@@ -1,23 +1,23 @@
-part of '../_.dart';
+part of '../electrochemical_command_change_notifier.dart';
 
 mixin Dpv {
-  void setDpvElectrochemicalParametersEBegin(String eBegin);
-  String getDpvElectrochemicalParametersEBegin();
+  void setDpvElectrochemicalParametersEBegin(double eBegin);
+  double getDpvElectrochemicalParametersEBegin();
 
-  void setDpvElectrochemicalParametersEEnd(String eEnd);
-  String getDpvElectrochemicalParametersEEnd();
+  void setDpvElectrochemicalParametersEEnd(double eEnd);
+  double getDpvElectrochemicalParametersEEnd();
 
-  void setDpvElectrochemicalParametersEStep(String eStep);
-  String getDpvElectrochemicalParametersEStep();
+  void setDpvElectrochemicalParametersEStep(double eStep);
+  double getDpvElectrochemicalParametersEStep();
 
-  void setDpvElectrochemicalParametersEPulse(String ePulse);
-  String getDpvElectrochemicalParametersEPulse();
+  void setDpvElectrochemicalParametersEPulse(double ePulse);
+  double getDpvElectrochemicalParametersEPulse();
 
-  void setDpvElectrochemicalParametersTPulse(String tPulse);
-  String getDpvElectrochemicalParametersTPulse();
+  void setDpvElectrochemicalParametersTPulse(double tPulse);
+  double getDpvElectrochemicalParametersTPulse();
 
-  void setDpvElectrochemicalParametersScanRate(String scanRate);
-  String getDpvElectrochemicalParametersScanRate();
+  void setDpvElectrochemicalParametersScanRate(double scanRate);
+  double getDpvElectrochemicalParametersScanRate();
 
   void setDpvElectrochemicalParametersInversionOption(DpvElectrochemicalParametersInversionOption inversionOption);
   DpvElectrochemicalParametersInversionOption getDpvElectrochemicalParametersInversionOption();

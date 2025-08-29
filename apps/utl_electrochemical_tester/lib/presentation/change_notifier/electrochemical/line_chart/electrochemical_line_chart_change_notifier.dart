@@ -1,43 +1,77 @@
-import 'dart:math';
-
-import 'package:equatable/equatable.dart';
 import 'package:flutter/widgets.dart';
-import 'package:syncfusion_flutter_charts/charts.dart' show LineSeries;
-import 'package:utl_electrochemical_tester/domain/value/electrochemical_parameters.dart';
 
-part 'detail.dart';
-part 'filter.dart';
+import '../../../../domain/entity/electrochemical_entity.dart';
 
 enum ElectrochemicalLineChartMode {
-  ampereIndex,
-  ampereTime,
-  ampereVolt,
+  ca,
+  cv,
+  dpv,
+  eis0,
+  eis1,
 }
 
-abstract class ElectrochemicalLineChartChangeNotifier implements ChangeNotifier {
-  ElectrochemicalLineChartMode get mode;
-  set mode(ElectrochemicalLineChartMode newMode);
+class ElectrochemicalLineChartChangeNotifier extends ChangeNotifier {
+  ElectrochemicalLineChartMode _mode;
+  List<ElectrochemicalEntity> _entities;
+  bool _isTouched = false;
+  double? _x;
 
-  void setTypeShow({
-    required ElectrochemicalType type,
-    required bool show,
-  });
-  void toggleTypeShow({
-    required ElectrochemicalType type,
-  });
-  bool getTypeShow({
-    required ElectrochemicalType type,
-  });
+  ElectrochemicalLineChartChangeNotifier({
+    required ElectrochemicalLineChartMode mode,
+    List<ElectrochemicalEntity>? entities,
+  })  : _mode = mode,
+        _entities = entities ?? [];
 
-  ElectrochemicalLineChartFilter get filter;
-  set filter(ElectrochemicalLineChartFilter newFilter);
+  // mode getter and setter
+  ElectrochemicalLineChartMode get mode => _mode;
+  updateMode(ElectrochemicalLineChartMode newMode) {
+    if (_mode != newMode) {
+      _mode = newMode;
+      notifyListeners();
+    }
+  }
 
-  List<LineSeries<Point<double>, double>> get lineSeriesList;
+  // entities getter
+  List<ElectrochemicalEntity> get entities => _entities.where((e) {
+    switch(_mode) {
+      case ElectrochemicalLineChartMode.ca:
+        return e.header.type == ElectrochemicalType.ca;
+      case ElectrochemicalLineChartMode.cv:
+        return e.header.type == ElectrochemicalType.cv;
+      case ElectrochemicalLineChartMode.dpv:
+        return e.header.type == ElectrochemicalType.dpv;
+      case ElectrochemicalLineChartMode.eis0:
+        // TODO: Handle this case.
+        return false;
+      case ElectrochemicalLineChartMode.eis1:
+        // TODO: Handle this case.
+        return false;
+    }
+  }).toList(growable: false);
 
-  set isTouched(bool newIsTouched);
+  // x getter and setter
+  double? get x => _x;
+  updateX(double? newX) {
+    if (_x != newX) {
+      _x = newX;
+      notifyListeners();
+    }
+  }
 
-  set x(double? newX);
-  double? get x;
+  // isTouched setter
+  updateIsTouched(bool newIsTouched) {
+    if (_isTouched != newIsTouched) {
+      _isTouched = newIsTouched;
+      notifyListeners();
+    }
+  }
 
-  List<ElectrochemicalLineChartDetail> get details;
+  // headers getter
+  List<ElectrochemicalHeader> get headers => _entities.map((e) => e.header).toList(growable: false);
+
+  // Optional: helper methods
+  void updateEntities(List<ElectrochemicalEntity> newEntities) {
+    _entities = newEntities;
+    notifyListeners();
+  }
 }

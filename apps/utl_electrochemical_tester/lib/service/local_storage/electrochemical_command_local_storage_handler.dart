@@ -1,6 +1,6 @@
+import 'dart:typed_data';
 
-import '../../domain/value/electrochemical_parameters.dart';
-import '../electrochemical/dto/ad5940_parameters.dart';
+import '../../domain/entity/electrochemical_entity.dart';
 
 abstract class ElectrochemicalCommandLocalStorageHandler {
   void setCommandTabIndexBuffer(int index);
@@ -9,56 +9,53 @@ abstract class ElectrochemicalCommandLocalStorageHandler {
   void setDataNameBuffer(String dataName);
   String getDataNameBuffer();
 
-  void setAd5940ParametersElectrochemicalWorkingElectrode(Ad5940ParametersElectrochemicalWorkingElectrode ad5940ParametersElectrochemicalWorkingElectrode);
-  Ad5940ParametersElectrochemicalWorkingElectrode getAd5940ParametersElectrochemicalWorkingElectrode();
+  void setAd5940ParametersElectrodes(Uint8List electrodes);
+  Uint8List getAd5940ParametersElectrodes();
 
-  void setAd5940ParametersHsTiaRTia(Ad5940ParametersHsTiaRTia ad5940ParametersHsTiaRTia);
-  Ad5940ParametersHsTiaRTia getAd5940ParametersHsTiaRTia();
+  void setCaElectrochemicalParametersEDc(double eDc);
+  double getCaElectrochemicalParametersEDc();
 
-  void setCaElectrochemicalParametersEDc(int eDc);
-  int getCaElectrochemicalParametersEDc();
+  void setCaElectrochemicalParametersTInterval(double tInterval);
+  double getCaElectrochemicalParametersTInterval();
 
-  void setCaElectrochemicalParametersTInterval(int tInterval);
-  int getCaElectrochemicalParametersTInterval();
+  void setCaElectrochemicalParametersTRun(double tRun);
+  double getCaElectrochemicalParametersTRun();
 
-  void setCaElectrochemicalParametersTRun(int tRun);
-  int getCaElectrochemicalParametersTRun();
+  void setCvElectrochemicalParametersEBegin(double eBegin);
+  double getCvElectrochemicalParametersEBegin();
 
-  void setCvElectrochemicalParametersEBegin(int eBegin);
-  int getCvElectrochemicalParametersEBegin();
+  void setCvElectrochemicalParametersEVertex1(double eVertex1);
+  double getCvElectrochemicalParametersEVertex1();
 
-  void setCvElectrochemicalParametersEVertex1(int eVertex1);
-  int getCvElectrochemicalParametersEVertex1();
+  void setCvElectrochemicalParametersEVertex2(double eVertex2);
+  double getCvElectrochemicalParametersEVertex2();
 
-  void setCvElectrochemicalParametersEVertex2(int eVertex2);
-  int getCvElectrochemicalParametersEVertex2();
+  void setCvElectrochemicalParametersEStep(double eStep);
+  double getCvElectrochemicalParametersEStep();
 
-  void setCvElectrochemicalParametersEStep(int eStep);
-  int getCvElectrochemicalParametersEStep();
-
-  void setCvElectrochemicalParametersScanRate(int scanRate);
-  int getCvElectrochemicalParametersScanRate();
+  void setCvElectrochemicalParametersScanRate(double scanRate);
+  double getCvElectrochemicalParametersScanRate();
 
   void setCvElectrochemicalParametersNumberOfScans(int numberOfScans);
   int getCvElectrochemicalParametersNumberOfScans();
 
-  void setDpvElectrochemicalParametersEBegin(int eBegin);
-  int getDpvElectrochemicalParametersEBegin();
+  void setDpvElectrochemicalParametersEBegin(double eBegin);
+  double getDpvElectrochemicalParametersEBegin();
 
-  void setDpvElectrochemicalParametersEEnd(int eEnd);
-  int getDpvElectrochemicalParametersEEnd();
+  void setDpvElectrochemicalParametersEEnd(double eEnd);
+  double getDpvElectrochemicalParametersEEnd();
 
-  void setDpvElectrochemicalParametersEStep(int eStep);
-  int getDpvElectrochemicalParametersEStep();
+  void setDpvElectrochemicalParametersEStep(double eStep);
+  double getDpvElectrochemicalParametersEStep();
 
-  void setDpvElectrochemicalParametersEPulse(int ePulse);
-  int getDpvElectrochemicalParametersEPulse();
+  void setDpvElectrochemicalParametersEPulse(double ePulse);
+  double getDpvElectrochemicalParametersEPulse();
 
-  void setDpvElectrochemicalParametersTPulse(int tPulse);
-  int getDpvElectrochemicalParametersTPulse();
+  void setDpvElectrochemicalParametersTPulse(double tPulse);
+  double getDpvElectrochemicalParametersTPulse();
 
-  void setDpvElectrochemicalParametersScanRate(int scanRate);
-  int getDpvElectrochemicalParametersScanRate();
+  void setDpvElectrochemicalParametersScanRate(double scanRate);
+  double getDpvElectrochemicalParametersScanRate();
 
   void setDpvElectrochemicalParametersInversionOption(DpvElectrochemicalParametersInversionOption inversionOption);
   DpvElectrochemicalParametersInversionOption getDpvElectrochemicalParametersInversionOption();

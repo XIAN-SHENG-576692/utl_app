@@ -1,7 +1,6 @@
 import 'package:bluetooth_utils/presentation/quick_connection/bluetooth_quick_connection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:hex_keyboard/hex_keyboard_manager.dart';
 import 'package:provider/provider.dart';
 import 'package:utl_seat_cushion/presentation/theme/theme_data.dart';
@@ -11,6 +10,7 @@ import 'init/initializer.dart';
 import 'init/resource/bluetooth_resource.dart';
 import 'init/resource/data_resource.dart';
 import 'init/resource/service_resource.dart';
+import 'l10n/gen_l10n/app_localizations.dart';
 import 'presentation/change_notifier/seat_cushion_features.dart';
 import 'presentation/screen/home_screen.dart';
 

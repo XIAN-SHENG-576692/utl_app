@@ -67,9 +67,9 @@ class SeatCushionSensorDataStreamImpl implements SeatCushionSensorDataStream {
     required List<int> forces,
   }) {
     switch(type) {
-      case SeatCushionType.upper:
+      case SeatCushionType.right:
         return forces.reversed.toList(growable: false);
-      case SeatCushionType.lower:
+      case SeatCushionType.left:
         return forces.toList(growable: false);
     }
   }

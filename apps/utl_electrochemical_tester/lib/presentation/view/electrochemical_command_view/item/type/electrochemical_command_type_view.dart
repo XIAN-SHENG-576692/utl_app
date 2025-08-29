@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import '../../../../../domain/value/electrochemical_parameters.dart';
+import '../../../../../domain/entity/electrochemical_entity.dart';
+import '../../../../../l10n/gen_l10n/app_localizations.dart';
 import '../../../../change_notifier/electrochemical/command/electrochemical_command_change_notifier.dart';
 import '../../electrochemical_command_widget_builder.dart';
 

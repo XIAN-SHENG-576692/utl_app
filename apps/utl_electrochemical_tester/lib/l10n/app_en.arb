@@ -11,10 +11,10 @@
     }
   },
 
-  "clearAllDataTitle": "Clear all data",
-  "areYouSureYouWantToClearAllDataMessage": "Are you sure you want to clear all data?",
   "yesButtonText": "Yes",
   "noButtonText": "No",
+  "downloadButtonText": "Download",
+  "cancelButtonText": "Cancel",
 
   "connectBluetoothButtonText": "Connect",
   "disconnectBluetoothButtonText": "Disconnect",
@@ -53,6 +53,6 @@
   "scanRate": "scan rate",
   "inversionOption": "inversion option",
 
-  "ad5940ParametersElectrochemicalWorkingElectrode": "AD5940 Working Electrode",
+  "ad5940ParameterElectrodes": "AD5940 Electrodes",
   "ad5940HsRTia": "AD5940 HsRTia"
 }

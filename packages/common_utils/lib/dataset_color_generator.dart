@@ -10,6 +10,12 @@ class DatasetColorGenerator {
     return max(min(value, maxValue), minValue);
   }
 
+  static const double _RAINBOW_HUE_MIN = 0.0;
+  static const double _RAINBOW_HUE_MAX = 300.0;
+
+  static const double _BRIGHTNESS_MIN = 0.0;
+  static const double _BRIGHTNESS_MAX = 1.0;
+
   /// Generates a grayscale color
   ///
   /// [alpha]: Opacity of the color (0.0 to 1.0)
@@ -19,8 +25,14 @@ class DatasetColorGenerator {
     required double alpha,
     required int index,
     required int length,
+    double brightnessMax = _BRIGHTNESS_MAX,
+    double brightnessMin = _BRIGHTNESS_MIN,
   }) {
-    final brightness = _clamp(255.0 * index / length, 0.0, 255.0);
+    final brightness = _clamp(
+      ((brightnessMax - brightnessMin) * index / length) + brightnessMin,
+      brightnessMin,
+      brightnessMax,
+    );
     return HSVColor.fromAHSV(
       alpha,
       0.0, // Grayscale colors have no hue
@@ -38,8 +50,17 @@ class DatasetColorGenerator {
     required double alpha,
     required int index,
     required int length,
+    double hueMax = _RAINBOW_HUE_MAX,
+    double hueMin = _RAINBOW_HUE_MIN,
   }) {
-    final hue = _clamp(255.0 * index / length, 0.0, 255.0);
+    var hue = _clamp(
+      ((hueMax - hueMin) * index / length) + hueMin,
+      hueMin,
+      hueMax,
+    );
+    hue = (hue >= 0)
+        ? hue
+        : 360 - hue;
     return HSVColor.fromAHSV(
       alpha,
       hue, // Hue varies across the dataset
@@ -61,9 +82,24 @@ class DatasetColorGenerator {
     required int length,
     required int groupIndex,
     required int groupLength,
+    double hueMax = _RAINBOW_HUE_MAX,
+    double hueMin = _RAINBOW_HUE_MIN,
+    double brightnessMax = _BRIGHTNESS_MAX,
+    double brightnessMin = _BRIGHTNESS_MIN,
   }) {
-    final hue = _clamp(255.0 * groupIndex / groupLength, 0.0, 255.0);
-    final brightness = _clamp(1.0 * index / length, 0.0, 1.0);
+    var hue = _clamp(
+      ((hueMax - hueMin) * index / length) + hueMin,
+      hueMin,
+      hueMax,
+    );
+    hue = (hue >= 0)
+        ? hue
+        : 360 - hue;
+    final brightness = _clamp(
+      ((brightnessMax - brightnessMin) * index / length) + brightnessMin,
+      brightnessMin,
+      brightnessMax,
+    );
     return HSVColor.fromAHSV(
       alpha,
       hue, // Hue changes based on the layer index

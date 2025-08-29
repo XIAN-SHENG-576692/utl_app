@@ -1,9 +1,12 @@
+import 'dart:typed_data';
+
+import 'package:common_utils/bytes.dart';
+import 'package:common_utils/string.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
-import '../../../../service/electrochemical/dto/ad5940_parameters.dart';
+import '../../../../l10n/gen_l10n/app_localizations.dart';
 import '../../../change_notifier/electrochemical/command/electrochemical_command_change_notifier.dart';
 import '../electrochemical_command_widget_builder.dart';
 
@@ -18,47 +21,13 @@ class ElectrochemicalCommandAd5940View extends StatelessWidget {
     return Column(
       children: [
         ElectrochemicalCommandWidgetBuilder.buildTile(
-          label: appLocalizations.ad5940ParametersElectrochemicalWorkingElectrode,
-          body: StatefulBuilder(
-            builder: (context, setState) {
-              return DropdownButton<Ad5940ParametersElectrochemicalWorkingElectrode>(
-                value: notifier.getAd5940ParametersElectrochemicalWorkingElectrode(),
-                onChanged: (newValue) {
-                  setState(() {
-                    notifier.setAd5940ParametersElectrochemicalWorkingElectrode(newValue!);
-                  });
-                },
-                items: Ad5940ParametersElectrochemicalWorkingElectrode.values.map((option) {
-                  return DropdownMenuItem(
-                    value: option,
-                    child: Text(option.name),
-                  );
-                }).toList(),
-              );
-            },
+          label: appLocalizations.ad5940ParameterElectrodes,
+          body: TextFormField(
+            initialValue: notifier.getAd5940ParametersElectrodes().toByteStrings().join(""),
+            keyboardType: TextInputType.number,
+            onChanged: (s) => notifier.setAd5940ParametersElectrodes(s.hexToUint8List()),
           ),
         ),
-        // ElectrochemicalCommandWidgetBuilder.buildTile(
-        //   label: appLocalizations.ad5940HsRTia,
-        //   body: StatefulBuilder(
-        //     builder: (context, setState) {
-        //       return DropdownButton<Ad5940ParametersHsTiaRTia>(
-        //         value: electrochemicalCommandController.getAd5940ParametersHsTiaRTia(),
-        //         onChanged: (newValue) {
-        //           setState(() {
-        //             electrochemicalCommandController.setAd5940ParametersHsTiaRTia(newValue!);
-        //           });
-        //         },
-        //         items: Ad5940ParametersHsTiaRTia.values.map((option) {
-        //           return DropdownMenuItem(
-        //             value: option,
-        //             child: Text(option.name),
-        //           );
-        //         }).toList(),
-        //       );
-        //     },
-        //   ),
-        // ),
       ],
     );
   }

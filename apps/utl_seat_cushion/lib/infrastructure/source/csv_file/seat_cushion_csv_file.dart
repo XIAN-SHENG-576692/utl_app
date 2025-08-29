@@ -1,9 +1,9 @@
 import 'package:common_utils/time_utils.dart';
 import 'package:file_utils/csv/simple_csv_file.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:synchronized/synchronized.dart';
 
 import '../../../domain/model/entity/seat_cushion_entity.dart';
+import '../../../l10n/gen_l10n/app_localizations.dart';
 
 class SeatCushionCsvFile {
   static String _generateTimeFileFormat() {

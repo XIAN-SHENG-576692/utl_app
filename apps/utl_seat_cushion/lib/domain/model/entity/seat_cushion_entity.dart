@@ -3,48 +3,51 @@ import 'dart:math';
 import 'package:equatable/equatable.dart';
 
 enum SeatCushionType {
-  upper,
-  lower,
+  left,
+  right,
 }
 
 class SeatCushionParameters {
   SeatCushionParameters._();
 
-  static const int unitsMaxRow = 8;
-  static const int unitsMaxColumn = 31;
+  static const int unitsMaxRow = 31;
+  static const int unitsMaxColumn = 8;
   static const int unitsMaxIndex = unitsMaxRow * unitsMaxColumn;
   static const double unitsHalfMaxRow = unitsMaxRow / 2;
   static const double unitsHalfMaxColumn = unitsMaxColumn / 2;
-  static const double unitWidth = 7.5;
-  static const double unitHeight = 10.0;
+  static const double unitWidth = 10.0;
+  static const double unitHeight = 7.5;
+  static const double deviceWidth = unitWidth * unitsMaxColumn;
+  static const double deviceHeight = unitHeight * unitsMaxRow;
+  static double allWidth = (deviceWidth) + (basePosition(type: SeatCushionType.left).x - basePosition(type: SeatCushionType.right).x).abs();
 
   static int get forceLength => unitsMaxIndex;
   static const int forceMax = 2500;
   static const int forceMin = 0;
+
+  static Point<double> basePosition({
+    required SeatCushionType type,
+  }) {
+    switch(type) {
+      case SeatCushionType.left:
+        return Point(0.0, 0.0);
+      case SeatCushionType.right:
+        return Point(133.0, 0.0);
+    }
+  }
 }
 
 class SeatCushionCalculator {
   SeatCushionCalculator._();
 
-  static Point<double> basePosition({
-    required SeatCushionEntity entity,
-  }) {
-    switch(entity.type) {
-      case SeatCushionType.upper:
-        return Point(0.0, 0.0);
-      case SeatCushionType.lower:
-        return Point(0.0, 133.0);
-    }
-  }
-
   static double ischiumWidth({
-    required SeatCushionEntity upper,
-    required SeatCushionEntity lower,
+    required SeatCushionEntity left,
+    required SeatCushionEntity right,
   }) {
-    if(upper.type != SeatCushionType.upper) throw Exception("ischiumWidth: enter wrong upper.");
-    if(lower.type != SeatCushionType.lower) throw Exception("ischiumWidth: enter wrong lower.");
-    final upperP = upper.ischiumPosition() + basePosition(entity: upper);
-    final lowerP = lower.ischiumPosition() + basePosition(entity: lower);
+    if(left.type != SeatCushionType.right) throw Exception("ischiumWidth: enter wrong left.");
+    if(right.type != SeatCushionType.left) throw Exception("ischiumWidth: enter wrong right.");
+    final upperP = left.ischiumPosition() + SeatCushionParameters.basePosition(type: SeatCushionType.left);
+    final lowerP = right.ischiumPosition() + SeatCushionParameters.basePosition(type: SeatCushionType.right);
     final dx = (lowerP.x - upperP.x);
     final dy = (lowerP.y - upperP.y);
     return sqrt(pow(dx, 2) + pow(dy, 2));
@@ -62,8 +65,8 @@ class SeatCushionUnit extends Equatable {
   int index;
   int force;
 
-  int get row => index % SeatCushionParameters.unitsMaxRow;
-  int get column => index ~/ SeatCushionParameters.unitsMaxRow;
+  int get row => index ~/ SeatCushionParameters.unitsMaxColumn;
+  int get column => SeatCushionParameters.unitsMaxColumn - 1 - (index % SeatCushionParameters.unitsMaxColumn);
 
   Point<double> get position => Point(
     (column - SeatCushionParameters.unitsHalfMaxColumn + 0.5) * SeatCushionParameters.unitWidth,

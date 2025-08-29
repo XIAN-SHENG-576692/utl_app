@@ -1,7 +1,8 @@
-import 'package:utl_electrochemical_tester/domain/value/electrochemical_parameters.dart';
+import 'dart:typed_data';
+
 import 'package:utl_electrochemical_tester/infrastructure/source/shared_preferences/shared_preferences_handler.dart';
 
-import '../../../service/electrochemical/dto/ad5940_parameters.dart';
+import '../../../domain/entity/electrochemical_entity.dart';
 import '../../../service/local_storage/electrochemical_command_local_storage_handler.dart';
 
 class ElectrochemicalCommandLocalStorageHandlerImpl implements ElectrochemicalCommandLocalStorageHandler {
@@ -12,26 +13,22 @@ class ElectrochemicalCommandLocalStorageHandlerImpl implements ElectrochemicalCo
   });
 
   @override
-  Ad5940ParametersElectrochemicalWorkingElectrode getAd5940ParametersElectrochemicalWorkingElectrode() {
-    return sharedPreferencesHandler.getAd5940ParametersElectrochemicalWorkingElectrode();
+  Uint8List getAd5940ParametersElectrodes() {
+    return sharedPreferencesHandler.getAd5940ParametersElectrodes();
   }
 
   @override
-  Ad5940ParametersHsTiaRTia getAd5940ParametersHsTiaRTia() {
-    return sharedPreferencesHandler.getAd5940ParametersHsTiaRTia();
-  }
-  @override
-  int getCaElectrochemicalParametersEDc() {
+  double getCaElectrochemicalParametersEDc() {
     return sharedPreferencesHandler.getCaElectrochemicalParametersEDc();
   }
 
   @override
-  int getCaElectrochemicalParametersTInterval() {
+  double getCaElectrochemicalParametersTInterval() {
     return sharedPreferencesHandler.getCaElectrochemicalParametersTInterval();
   }
 
   @override
-  int getCaElectrochemicalParametersTRun() {
+  double getCaElectrochemicalParametersTRun() {
     return sharedPreferencesHandler.getCaElectrochemicalParametersTRun();
   }
 
@@ -41,22 +38,22 @@ class ElectrochemicalCommandLocalStorageHandlerImpl implements ElectrochemicalCo
   }
 
   @override
-  int getCvElectrochemicalParametersEBegin() {
+  double getCvElectrochemicalParametersEBegin() {
     return sharedPreferencesHandler.getCvElectrochemicalParametersEBegin();
   }
 
   @override
-  int getCvElectrochemicalParametersEStep() {
+  double getCvElectrochemicalParametersEStep() {
     return sharedPreferencesHandler.getCvElectrochemicalParametersEStep();
   }
 
   @override
-  int getCvElectrochemicalParametersEVertex1() {
+  double getCvElectrochemicalParametersEVertex1() {
     return sharedPreferencesHandler.getCvElectrochemicalParametersEVertex1();
   }
 
   @override
-  int getCvElectrochemicalParametersEVertex2() {
+  double getCvElectrochemicalParametersEVertex2() {
     return sharedPreferencesHandler.getCvElectrochemicalParametersEVertex2();
   }
 
@@ -66,7 +63,7 @@ class ElectrochemicalCommandLocalStorageHandlerImpl implements ElectrochemicalCo
   }
 
   @override
-  int getCvElectrochemicalParametersScanRate() {
+  double getCvElectrochemicalParametersScanRate() {
     return sharedPreferencesHandler.getCvElectrochemicalParametersScanRate();
   }
 
@@ -76,22 +73,22 @@ class ElectrochemicalCommandLocalStorageHandlerImpl implements ElectrochemicalCo
   }
 
   @override
-  int getDpvElectrochemicalParametersEBegin() {
+  double getDpvElectrochemicalParametersEBegin() {
     return sharedPreferencesHandler.getDpvElectrochemicalParametersEBegin();
   }
 
   @override
-  int getDpvElectrochemicalParametersEEnd() {
+  double getDpvElectrochemicalParametersEEnd() {
     return sharedPreferencesHandler.getDpvElectrochemicalParametersEEnd();
   }
 
   @override
-  int getDpvElectrochemicalParametersEPulse() {
+  double getDpvElectrochemicalParametersEPulse() {
     return sharedPreferencesHandler.getDpvElectrochemicalParametersEPulse();
   }
 
   @override
-  int getDpvElectrochemicalParametersEStep() {
+  double getDpvElectrochemicalParametersEStep() {
     return sharedPreferencesHandler.getDpvElectrochemicalParametersEStep();
   }
 
@@ -101,37 +98,32 @@ class ElectrochemicalCommandLocalStorageHandlerImpl implements ElectrochemicalCo
   }
 
   @override
-  int getDpvElectrochemicalParametersScanRate() {
+  double getDpvElectrochemicalParametersScanRate() {
     return sharedPreferencesHandler.getDpvElectrochemicalParametersScanRate();
   }
 
   @override
-  int getDpvElectrochemicalParametersTPulse() {
+  double getDpvElectrochemicalParametersTPulse() {
     return sharedPreferencesHandler.getDpvElectrochemicalParametersTPulse();
   }
 
   @override
-  void setAd5940ParametersElectrochemicalWorkingElectrode(Ad5940ParametersElectrochemicalWorkingElectrode ad5940ParametersElectrochemicalWorkingElectrode) {
-    sharedPreferencesHandler.setAd5940ParametersElectrochemicalWorkingElectrode(ad5940ParametersElectrochemicalWorkingElectrode);
+  void setAd5940ParametersElectrodes(Uint8List ad5940ParametersElectrochemicalWorkingElectrode) {
+    sharedPreferencesHandler.setAd5940ParametersElectrodes(ad5940ParametersElectrochemicalWorkingElectrode);
   }
 
   @override
-  void setAd5940ParametersHsTiaRTia(Ad5940ParametersHsTiaRTia ad5940ParametersHsTiaRTia) {
-    sharedPreferencesHandler.setAd5940ParametersHsTiaRTia(ad5940ParametersHsTiaRTia);
-  }
-
-  @override
-  void setCaElectrochemicalParametersEDc(int eDc) {
+  void setCaElectrochemicalParametersEDc(double eDc) {
     sharedPreferencesHandler.setCaElectrochemicalParametersEDc(eDc);
   }
 
   @override
-  void setCaElectrochemicalParametersTInterval(int tInterval) {
+  void setCaElectrochemicalParametersTInterval(double tInterval) {
     sharedPreferencesHandler.setCaElectrochemicalParametersTInterval(tInterval);
   }
 
   @override
-  void setCaElectrochemicalParametersTRun(int tRun) {
+  void setCaElectrochemicalParametersTRun(double tRun) {
     sharedPreferencesHandler.setCaElectrochemicalParametersTRun(tRun);
   }
 
@@ -141,22 +133,22 @@ class ElectrochemicalCommandLocalStorageHandlerImpl implements ElectrochemicalCo
   }
 
   @override
-  void setCvElectrochemicalParametersEBegin(int eBegin) {
+  void setCvElectrochemicalParametersEBegin(double eBegin) {
     sharedPreferencesHandler.setCvElectrochemicalParametersEBegin(eBegin);
   }
 
   @override
-  void setCvElectrochemicalParametersEStep(int eStep) {
+  void setCvElectrochemicalParametersEStep(double eStep) {
     sharedPreferencesHandler.setCvElectrochemicalParametersEStep(eStep);
   }
 
   @override
-  void setCvElectrochemicalParametersEVertex1(int eVertex1) {
+  void setCvElectrochemicalParametersEVertex1(double eVertex1) {
     sharedPreferencesHandler.setCvElectrochemicalParametersEVertex1(eVertex1);
   }
 
   @override
-  void setCvElectrochemicalParametersEVertex2(int eVertex2) {
+  void setCvElectrochemicalParametersEVertex2(double eVertex2) {
     sharedPreferencesHandler.setCvElectrochemicalParametersEVertex2(eVertex2);
   }
 
@@ -166,7 +158,7 @@ class ElectrochemicalCommandLocalStorageHandlerImpl implements ElectrochemicalCo
   }
 
   @override
-  void setCvElectrochemicalParametersScanRate(int scanRate) {
+  void setCvElectrochemicalParametersScanRate(double scanRate) {
     sharedPreferencesHandler.setCvElectrochemicalParametersScanRate(scanRate);
   }
 
@@ -176,22 +168,22 @@ class ElectrochemicalCommandLocalStorageHandlerImpl implements ElectrochemicalCo
   }
 
   @override
-  void setDpvElectrochemicalParametersEBegin(int eBegin) {
+  void setDpvElectrochemicalParametersEBegin(double eBegin) {
     sharedPreferencesHandler.setDpvElectrochemicalParametersEBegin(eBegin);
   }
 
   @override
-  void setDpvElectrochemicalParametersEEnd(int eEnd) {
+  void setDpvElectrochemicalParametersEEnd(double eEnd) {
     sharedPreferencesHandler.setDpvElectrochemicalParametersEEnd(eEnd);
   }
 
   @override
-  void setDpvElectrochemicalParametersEPulse(int ePulse) {
+  void setDpvElectrochemicalParametersEPulse(double ePulse) {
     sharedPreferencesHandler.setDpvElectrochemicalParametersEPulse(ePulse);
   }
 
   @override
-  void setDpvElectrochemicalParametersEStep(int eStep) {
+  void setDpvElectrochemicalParametersEStep(double eStep) {
     sharedPreferencesHandler.setDpvElectrochemicalParametersEStep(eStep);
   }
 
@@ -201,12 +193,12 @@ class ElectrochemicalCommandLocalStorageHandlerImpl implements ElectrochemicalCo
   }
 
   @override
-  void setDpvElectrochemicalParametersScanRate(int scanRate) {
+  void setDpvElectrochemicalParametersScanRate(double scanRate) {
     sharedPreferencesHandler.setDpvElectrochemicalParametersScanRate(scanRate);
   }
 
   @override
-  void setDpvElectrochemicalParametersTPulse(int tPulse) {
+  void setDpvElectrochemicalParametersTPulse(double tPulse) {
     sharedPreferencesHandler.setDpvElectrochemicalParametersTPulse(tPulse);
   }
 }

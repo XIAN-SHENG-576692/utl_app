@@ -7,6 +7,12 @@ extension CustomTheme on ThemeData {
   Color get seatCushionUnitBorderColor => brightness == Brightness.light
       ? Colors.black
       : Colors.white;
+  Color get ischiumPointBorderColor => brightness == Brightness.light
+      ? Colors.black
+      : Colors.white;
+  Color get ischiumPointFilledColor => brightness == Brightness.light
+      ? Colors.pinkAccent
+      : Colors.pinkAccent;
   Color get downloadIconColor => brightness == Brightness.light
       ? Colors.green
       : Colors.green[700]!;

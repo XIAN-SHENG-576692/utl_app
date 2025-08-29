@@ -1,12 +1,12 @@
-part of '../_.dart';
+part of '../electrochemical_command_change_notifier.dart';
 
 mixin Ca {
-  void setCaElectrochemicalParametersEDc(String eDc);
-  String getCaElectrochemicalParametersEDc();
+  void setCaElectrochemicalParametersEDc(double eDc);
+  double getCaElectrochemicalParametersEDc();
 
-  void setCaElectrochemicalParametersTInterval(String tInterval);
-  String getCaElectrochemicalParametersTInterval();
+  void setCaElectrochemicalParametersTInterval(double tInterval);
+  double getCaElectrochemicalParametersTInterval();
 
-  void setCaElectrochemicalParametersTRun(String tRun);
-  String getCaElectrochemicalParametersTRun();
+  void setCaElectrochemicalParametersTRun(double tRun);
+  double getCaElectrochemicalParametersTRun();
 }

@@ -13,27 +13,27 @@ class _Ca extends StatelessWidget {
         ElectrochemicalCommandWidgetBuilder.buildTile(
           label: appLocalizations.eDc,
           body: TextFormField(
-            initialValue: notifier.getCaElectrochemicalParametersEDc(),
+            initialValue: notifier.getCaElectrochemicalParametersEDc().toString(),
             keyboardType: TextInputType.number,
-            onChanged: notifier.setCaElectrochemicalParametersEDc,
+            onChanged: (value) => notifier.setCaElectrochemicalParametersEDc(double.tryParse(value) ?? 0.0),
           ),
         ),
 
         ElectrochemicalCommandWidgetBuilder.buildTile(
           label: appLocalizations.tInterval,
           body: TextFormField(
-            initialValue: notifier.getCaElectrochemicalParametersTInterval(),
+            initialValue: notifier.getCaElectrochemicalParametersTInterval().toString(),
             keyboardType: TextInputType.number,
-            onChanged: notifier.setCaElectrochemicalParametersTInterval,
+            onChanged: (value) => notifier.setCaElectrochemicalParametersTInterval(double.tryParse(value) ?? 0.0),
           ),
         ),
 
         ElectrochemicalCommandWidgetBuilder.buildTile(
           label: appLocalizations.tRun,
           body: TextFormField(
-            initialValue: notifier.getCaElectrochemicalParametersTRun(),
+            initialValue: notifier.getCaElectrochemicalParametersTRun().toString(),
             keyboardType: TextInputType.number,
-            onChanged: notifier.setCaElectrochemicalParametersTRun,
+            onChanged: (value) => notifier.setCaElectrochemicalParametersTRun(double.tryParse(value) ?? 0.0),
           ),
         ),
       ],

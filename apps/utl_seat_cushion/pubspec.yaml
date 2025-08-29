@@ -51,6 +51,7 @@ dependencies:
   path_provider: any
   provider: any
   shared_preferences: any
+  simple_3d_renderer: any
 
 dev_dependencies:
   flutter_test:
@@ -106,5 +107,3 @@ flutter:
   # see https://flutter.dev/to/font-from-package
 
   generate: true
-flutter_intl:
-  enabled: true

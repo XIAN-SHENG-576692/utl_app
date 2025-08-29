@@ -1,21 +1,21 @@
-part of '../_.dart';
+part of '../electrochemical_command_change_notifier.dart';
 
 mixin Cv {
-  void setCvElectrochemicalParametersEBegin(String eBegin);
-  String getCvElectrochemicalParametersEBegin();
+  void setCvElectrochemicalParametersEBegin(double eBegin);
+  double getCvElectrochemicalParametersEBegin();
 
-  void setCvElectrochemicalParametersEVertex1(String eVertex1);
-  String getCvElectrochemicalParametersEVertex1();
+  void setCvElectrochemicalParametersEVertex1(double eVertex1);
+  double getCvElectrochemicalParametersEVertex1();
 
-  void setCvElectrochemicalParametersEVertex2(String eVertex2);
-  String getCvElectrochemicalParametersEVertex2();
+  void setCvElectrochemicalParametersEVertex2(double eVertex2);
+  double getCvElectrochemicalParametersEVertex2();
 
-  void setCvElectrochemicalParametersEStep(String eStep);
-  String getCvElectrochemicalParametersEStep();
+  void setCvElectrochemicalParametersEStep(double eStep);
+  double getCvElectrochemicalParametersEStep();
 
-  void setCvElectrochemicalParametersScanRate(String scanRate);
-  String getCvElectrochemicalParametersScanRate();
+  void setCvElectrochemicalParametersScanRate(double scanRate);
+  double getCvElectrochemicalParametersScanRate();
 
-  void setCvElectrochemicalParametersNumberOfScans(String numberOfScans);
-  String getCvElectrochemicalParametersNumberOfScans();
+  void setCvElectrochemicalParametersNumberOfScans(int numberOfScans);
+  int getCvElectrochemicalParametersNumberOfScans();
 }

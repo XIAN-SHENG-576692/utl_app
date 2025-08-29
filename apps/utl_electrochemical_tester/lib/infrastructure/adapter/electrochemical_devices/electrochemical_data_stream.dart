@@ -1,17 +1,17 @@
+import 'package:utl_electrochemical_tester/domain/entity/electrochemical_entity.dart';
 import 'package:utl_electrochemical_tester/service/electrochemical/electrochemical_data_stream.dart';
 
-import '../../../service/electrochemical/dto/electrochemical_device_received_dto.dart';
 import '../../source/bluetooth/bluetooth_module.dart';
 
-class ElectrochemicalDataStreamImpl implements ElectrochemicalDataStream {
+class ElectrochemicalDataStreamImpl implements ElectrochemicalStreamer {
   final BluetoothModule bluetoothModule;
   ElectrochemicalDataStreamImpl({
     required this.bluetoothModule,
   });
 
   @override
-  Stream<ElectrochemicalDeviceReceivedDataDto> get dataStream => bluetoothModule.electrochemicalDataStream;
+  Stream<ElectrochemicalDataStreamDto> get dataStream => bluetoothModule.electrochemicalDataStream;
 
   @override
-  Stream<ElectrochemicalDeviceReceivedHeaderDto> get headerStream => bluetoothModule.electrochemicalHeaderStream;
+  Stream<ElectrochemicalHeader> get headerStream => bluetoothModule.electrochemicalHeaderStream;
 }

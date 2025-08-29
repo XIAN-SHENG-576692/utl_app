@@ -1,37 +1,38 @@
 import 'dart:typed_data';
 
+import 'package:utl_electrochemical_tester/domain/entity/electrochemical_entity.dart';
 import 'package:utl_electrochemical_tester/infrastructure/source/bluetooth/electrochemical_bluetooth_buffer.dart';
 
-import '../../../service/electrochemical/dto/electrochemical_device_received_dto.dart';
+import '../../../service/electrochemical/electrochemical_data_stream.dart';
 
 class BluetoothReceivedPacket {
   const BluetoothReceivedPacket({
     required this.deviceId,
     required this.deviceName,
-    required this.data,
+    required this.bytes,
   });
   final String deviceId;
   final String deviceName;
-  final Uint8List data;
+  final Uint8List bytes;
   @override
   String toString() {
     return "BluetoothReceivedPacket: "
         "\n\tdeviceId: $deviceId"
         "\n\tdeviceName: $deviceName"
-        "\n\tdata: $data"
+        "\n\tdata: $bytes"
     ;
   }
-  ElectrochemicalDeviceReceivedHeaderDto? mapToHeader() {
+  ElectrochemicalHeader? mapToHeader() {
     var dataName = ElectrochemicalBluetoothBuffer.getDataName(deviceId: deviceId);
     if(dataName == null) return null;
     var parameters = ElectrochemicalBluetoothBuffer.getParameters(deviceId: deviceId);
     if(parameters == null) return null;
-    if(data.length != 6) return null;
-    if(data[0] != 0x02) return null;
-    if(data[1] != 0x01) return null;
-    ByteData byteData = ByteData.sublistView(data);
-    int temperature = byteData.getInt32(2, Endian.little);
-    return ElectrochemicalDeviceReceivedHeaderDto(
+    if(bytes.length != 8) return null;
+    if(bytes[0] != 0x02) return null;
+    if(bytes[1] != 0x00) return null;
+    ByteData byteData = ByteData.sublistView(bytes);
+    double temperature = byteData.getFloat32(4, Endian.little);
+    return ElectrochemicalHeader.createWithoutError(
       dataName: dataName,
       deviceId: deviceId,
       deviceName: deviceName,
@@ -40,23 +41,20 @@ class BluetoothReceivedPacket {
       temperature: temperature,
     );
   }
-  ElectrochemicalDeviceReceivedDataDto? mapToData() {
+  ElectrochemicalDataStreamDto? mapToData() {
     var entityId = ElectrochemicalBluetoothBuffer.getEntityId(deviceId: deviceId);
     if(entityId == null) return null;
-    if(data.length != 16) return null;
-    if(data[0] != 0x02) return null;
-    if(data[1] != 0x02) return null;
-    ByteData byteData = ByteData.sublistView(data);
+    if(bytes.length != 8) return null;
+    if(bytes[0] != 0x02) return null;
+    if(bytes[1] != 0x01) return null;
+    ByteData byteData = ByteData.sublistView(bytes);
     int index = byteData.getInt16(2, Endian.little);
-    int time = byteData.getInt32(4, Endian.little);
-    int voltage = byteData.getInt32(8, Endian.little);
-    int current = byteData.getInt32(12, Endian.little);
-    return ElectrochemicalDeviceReceivedDataDto(
+    double data = byteData.getFloat32(4, Endian.little);
+    return ElectrochemicalDataStreamDto(
       entityId: entityId,
+      deviceId: deviceId,
       index: index,
-      time: time,
-      voltage: voltage,
-      current: current,
+      data: data,
     );
   }
 }

@@ -52,5 +52,6 @@ class Initializer {
     );
     ApplicationPersist.init();
     ApplicationPersist.electrochemicalEntityCreator.start();
+    ApplicationPersist.electrochemicalRinging.start();
   }
 }

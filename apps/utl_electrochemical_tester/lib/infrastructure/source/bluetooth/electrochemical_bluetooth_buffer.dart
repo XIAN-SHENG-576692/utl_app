@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:utl_electrochemical_tester/domain/repository/electrochemical_entity_repository.dart';
-import 'package:utl_electrochemical_tester/domain/value/electrochemical_parameters.dart';
+
+import '../../../domain/entity/electrochemical_entity.dart';
 
 class _Buffer {
   int? entityId;
@@ -24,7 +25,7 @@ class ElectrochemicalBluetoothBuffer {
     required ElectrochemicalEntityRepository electrochemicalEntityRepository,
   }) {
     _syncStreamSubscription = electrochemicalEntityRepository.entitySyncStream.listen((entity) {
-      var buffer = _buffers.where((b) => b.deviceId == entity.electrochemicalHeader.deviceId).firstOrNull;
+      var buffer = _buffers.where((b) => b.deviceId == entity.header.deviceId).firstOrNull;
       if(buffer == null) return;
       buffer.entityId = entity.id;
     });

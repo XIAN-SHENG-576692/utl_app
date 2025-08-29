@@ -8,7 +8,6 @@
       <module fileurl="file://$PROJECT_DIR$/packages/hex_keyboard/melos_hex_keyboard.iml" filepath="$PROJECT_DIR$/packages/hex_keyboard/melos_hex_keyboard.iml" />
       <module fileurl="file://$PROJECT_DIR$/packages/line_chart_utils/melos_line_chart_utils.iml" filepath="$PROJECT_DIR$/packages/line_chart_utils/melos_line_chart_utils.iml" />
       <module fileurl="file://$PROJECT_DIR$/packages/path_provider_utils/melos_path_provider_utils.iml" filepath="$PROJECT_DIR$/packages/path_provider_utils/melos_path_provider_utils.iml" />
-      <module fileurl="file://$PROJECT_DIR$/apps/utl_ad5940_quick_tester/melos_utl_ad5940_quick_tester.iml" filepath="$PROJECT_DIR$/apps/utl_ad5940_quick_tester/melos_utl_ad5940_quick_tester.iml" />
       <module fileurl="file://$PROJECT_DIR$/apps/utl_amulet/melos_utl_amulet.iml" filepath="$PROJECT_DIR$/apps/utl_amulet/melos_utl_amulet.iml" />
       <module fileurl="file://$PROJECT_DIR$/apps/utl_electrochemical_tester/melos_utl_electrochemical_tester.iml" filepath="$PROJECT_DIR$/apps/utl_electrochemical_tester/melos_utl_electrochemical_tester.iml" />
       <module fileurl="file://$PROJECT_DIR$/apps/utl_seat_cushion/melos_utl_seat_cushion.iml" filepath="$PROJECT_DIR$/apps/utl_seat_cushion/melos_utl_seat_cushion.iml" />

@@ -1,16 +1,15 @@
-import 'package:utl_electrochemical_tester/service/electrochemical/dto/electrochemical_device_sent_dto.dart';
+import 'dart:typed_data';
+
+import '../../domain/entity/electrochemical_entity.dart';
 
 abstract class ElectrochemicalDevice {
   String get deviceId;
-  Future<bool> startCa({
-    required CaElectrochemicalDeviceSentDto dto,
+  Future<bool> start({
+    required String dataName,
+    required Uint8List electrodes,
+    required ElectrochemicalParameters parameters,
   });
-  Future<bool> startCv({
-    required CvElectrochemicalDeviceSentDto dto,
-  });
-  Future<bool> startDpv({
-    required DpvElectrochemicalDeviceSentDto dto,
-  });
+  Future<bool> stop();
 }
 
 abstract class ElectrochemicalDevicesManager {

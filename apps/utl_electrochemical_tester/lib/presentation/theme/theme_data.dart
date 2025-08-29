@@ -14,7 +14,13 @@ extension AppThemeData on ThemeData {
   Color get downloadEnabledColor => brightness == Brightness.light
       ? Colors.orange
       : Colors.orange[700]!;
+  Color get uploadEnabledColor => brightness == Brightness.light
+      ? Colors.orange
+      : Colors.orange[700]!;
   Color get clearEnabledColor => brightness == Brightness.light
+      ? Colors.red
+      : Colors.red[700]!;
+  Color get stopColor => brightness == Brightness.light
       ? Colors.red
       : Colors.red[700]!;
 }

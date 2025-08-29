@@ -1,6 +1,4 @@
 import 'package:utl_electrochemical_tester/domain/entity/electrochemical_entity.dart';
-import 'package:utl_electrochemical_tester/domain/value/electrochemical_data.dart';
-import 'package:utl_electrochemical_tester/domain/value/electrochemical_header.dart';
 
 abstract class ElectrochemicalEntityRepository {
   Stream<ElectrochemicalEntity?> fetchEntitiesByIds({
@@ -25,11 +23,13 @@ abstract class ElectrochemicalEntityRepository {
 
   Future<ElectrochemicalEntity> createEntityFromHeader({
     required ElectrochemicalHeader header,
+    Iterable<ElectrochemicalData>? data,
   });
 
-  Future<ElectrochemicalEntity?> appendDataToEntity({
+  Future<ElectrochemicalEntity?> upsertDataToEntity({
     required int entityId,
-    required Iterable<ElectrochemicalData> data,
+    required int index,
+    required ElectrochemicalData data,
   });
 
   Future<bool> upsertEntity({

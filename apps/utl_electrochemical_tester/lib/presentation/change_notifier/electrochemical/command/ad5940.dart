@@ -1,9 +1,6 @@
-part of '_.dart';
+part of 'electrochemical_command_change_notifier.dart';
 
 mixin AD5940 {
-  void setAd5940ParametersElectrochemicalWorkingElectrode(Ad5940ParametersElectrochemicalWorkingElectrode ad5940ParametersElectrochemicalWorkingElectrode);
-  Ad5940ParametersElectrochemicalWorkingElectrode getAd5940ParametersElectrochemicalWorkingElectrode();
-
-  void setAd5940ParametersHsTiaRTia(Ad5940ParametersHsTiaRTia ad5940ParametersHsTiaRTia);
-  Ad5940ParametersHsTiaRTia getAd5940ParametersHsTiaRTia();
+  void setAd5940ParametersElectrodes(Uint8List electrodes);
+  Uint8List getAd5940ParametersElectrodes();
 }

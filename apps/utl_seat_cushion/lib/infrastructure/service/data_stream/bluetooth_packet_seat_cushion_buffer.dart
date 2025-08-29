@@ -69,8 +69,8 @@ class BluetoothPacketSeatCushionBuffer {
   static SeatCushionType? _extractSeatCushionType({
     required Uint8List bytes,
   }) {
-    if(bytes.first & 0xF0 == 0x10) return SeatCushionType.upper;
-    if(bytes.first & 0xF0 == 0x20) return SeatCushionType.lower;
+    if(bytes.first & 0xF0 == 0x10) return SeatCushionType.right;
+    if(bytes.first & 0xF0 == 0x20) return SeatCushionType.left;
     return null;
   }
   static BluetoothPacketDtoForcesStage? _extractForcesStage({
